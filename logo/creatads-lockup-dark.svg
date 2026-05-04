@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="290" height="80" viewBox="0 0 290 80" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%" gradientTransform="rotate(35, 40, 40)">
+      <stop offset="0%" stop-color="#7c3aed"></stop>
+      <stop offset="100%" stop-color="#7c3aed"></stop>
+    </linearGradient>
+    <radialGradient id="hl" cx="30%" cy="20%" r="80%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"></stop>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+  <rect x="8" y="8" width="64" height="64" rx="12" fill="url(#bg)"></rect>
+  <rect x="8" y="8" width="64" height="64" rx="12" fill="url(#hl)"></rect>
+  <path d="M 53.850 26.994 A 19 19 0 1 0 53.850 53.006 L 46.925 46.503 A 9.5 9.5 0 1 1 46.925 33.497 Z" fill="#ffffff" fill-opacity="0.97"></path>
+  <circle cx="54.250" cy="40.000" r="4.750" fill="#ffffff"></circle>
+  <text x="88" y="53" font-family="&#39;Plus Jakarta Sans&#39;, system-ui, sans-serif" font-weight="800" font-size="38" letter-spacing="-1.6"><tspan fill="#ffffff">creat</tspan><tspan fill="#7C3AED">ads</tspan></text>
+</svg>

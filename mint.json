@@ -1,0 +1,52 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "CreatAds",
+  "logo": {
+    "light": "/logo/creatads-lockup-light.svg",
+    "dark": "/logo/creatads-lockup-dark.svg"
+  },
+  "favicon": "/logo/creatads-icon.svg",
+  "colors": {
+    "primary": "#7C3AED",
+    "light": "#A78BFA",
+    "dark": "#5B21B6",
+    "background": {
+      "light": "#FFFFFF",
+      "dark": "#0a0b0f"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Ouvrir l'app",
+      "url": "https://creatads.app"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Guide utilisateur",
+      "pages": [
+        "docs/users/README",
+        "docs/users/demarrage",
+        "docs/users/studio-ia",
+        "docs/users/campagnes",
+        "docs/users/profils",
+        "docs/users/brand-kit",
+        "docs/users/credits"
+      ]
+    },
+    {
+      "group": "Développeurs",
+      "pages": [
+        "docs/developers/README",
+        "docs/developers/authentication",
+        "docs/developers/cli",
+        "docs/developers/sdk",
+        "docs/developers/mcp",
+        "docs/developers/workflows"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "website": "https://creatads.app"
+  }
+}
