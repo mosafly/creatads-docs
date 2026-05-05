@@ -21,28 +21,65 @@
       "url": "https://creatads.app"
     }
   ],
+  "tabs": [
+    { "name": "Français", "url": "fr" },
+    { "name": "English", "url": "en" }
+  ],
   "navigation": [
     {
-      "group": "Guide utilisateur",
-      "pages": [
-        "docs/users/README",
-        "docs/users/demarrage",
-        "docs/users/studio-ia",
-        "docs/users/campagnes",
-        "docs/users/profils",
-        "docs/users/brand-kit",
-        "docs/users/credits"
+      "tab": "Français",
+      "groups": [
+        {
+          "group": "Guide utilisateur",
+          "pages": [
+            "fr/users/introduction",
+            "fr/users/demarrage",
+            "fr/users/studio-ia",
+            "fr/users/campagnes",
+            "fr/users/profils",
+            "fr/users/brand-kit",
+            "fr/users/credits"
+          ]
+        },
+        {
+          "group": "Développeurs",
+          "pages": [
+            "fr/developers/introduction",
+            "fr/developers/authentication",
+            "fr/developers/cli",
+            "fr/developers/sdk",
+            "fr/developers/mcp",
+            "fr/developers/workflows"
+          ]
+        }
       ]
     },
     {
-      "group": "Développeurs",
-      "pages": [
-        "docs/developers/README",
-        "docs/developers/authentication",
-        "docs/developers/cli",
-        "docs/developers/sdk",
-        "docs/developers/mcp",
-        "docs/developers/workflows"
+      "tab": "English",
+      "groups": [
+        {
+          "group": "User Guide",
+          "pages": [
+            "en/users/introduction",
+            "en/users/getting-started",
+            "en/users/studio",
+            "en/users/campaigns",
+            "en/users/profiles",
+            "en/users/brand-kit",
+            "en/users/credits"
+          ]
+        },
+        {
+          "group": "Developers",
+          "pages": [
+            "en/developers/introduction",
+            "en/developers/authentication",
+            "en/developers/cli",
+            "en/developers/sdk",
+            "en/developers/mcp",
+            "en/developers/workflows"
+          ]
+        }
       ]
     }
   ],
