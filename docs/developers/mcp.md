@@ -1,50 +1,28 @@
 # MCP Server — Claude Code & AI Agents
 
-The `creatads-mcp` server exposes the CreatAds API as MCP tools, allowing Claude Code and any MCP-compatible agent to generate ad creatives directly from a conversation.
+The CreatAds MCP server exposes the full API as tools, letting Claude Code and any MCP-compatible agent generate ad creatives directly from a conversation — no UI needed.
+
+The server runs at `https://api.creatads.co/mcp` (HTTP, stateless JSON-RPC 2.0). No local install required.
 
 ## Setup
 
-### 1. Install & configure the CLI first
+### 1. Get your API key
+
+Open **Settings → API Keys** in the app and copy your `cads_...` key.
+
+### 2. Add the MCP server to Claude Code
 
 ```bash
-npm install -g creatads-cli
-creatads auth login
-creatads clients use <your-client-id>
+claude mcp add --transport http creatads https://api.creatads.co/mcp \
+  --header "Authorization: Bearer YOUR_CADS_KEY"
 ```
 
-The MCP server reads `~/.creatads/config.json` — the same config as the CLI.
-
-### 2. Register in Claude Code
-
-Add to `~/.claude/settings.json`:
-
-```json
-{
-  "mcpServers": {
-    "creatads": {
-      "command": "node",
-      "args": ["/path/to/creatads/services/mcp/dist/index.js"]
-    }
-  }
-}
-```
-
-Or if published on npm (`creatads-mcp`):
-
-```json
-{
-  "mcpServers": {
-    "creatads": {
-      "command": "npx",
-      "args": ["creatads-mcp"]
-    }
-  }
-}
-```
+That's it. Claude Code will discover the tools automatically.
 
 ### 3. Verify
 
 In a Claude Code session:
+
 ```
 Use the creatads list_clients tool
 ```
@@ -85,12 +63,11 @@ landing_url      (string)
 ```
 
 ### `generate_creatives`
-Generate AI visuals for a campaign. Polls automatically until done.
+Trigger AI generation for a campaign (fire-and-forget).
 ```
 campaign_id  (string, required)
-wait         (boolean) — true = wait for results (default), false = fire-and-forget
 ```
-Returns array of creatives with `image_url` when `wait=true`.
+Generation runs in the background. Call `list_creatives` to check progress.
 
 ### `list_creatives`
 List generated creatives for a campaign.
@@ -128,18 +105,18 @@ client_id (string, required)
 
 ## Example agent workflow
 
-Here is a complete prompt for Claude Code to generate a full campaign:
+Paste this prompt in Claude Code to generate a full campaign autonomously:
 
 ```
 I need to launch a campaign for my client Bobotcho (bidet brand).
 Use the creatads tools to:
 1. List the existing profiles and pick the 2 most relevant for urban eco-conscious buyers
-2. Create a campaign called "Été 2026" with CTA "Découvrir", offer "Livraison offerte", 
+2. Create a campaign called "Été 2026" with CTA "Découvrir", offer "Livraison offerte",
    formats 1:1 and 9:16, volume 4
-3. Generate the creatives and return the image URLs
+3. Generate the creatives, then poll list_creatives until images are ready and return the URLs
 ```
 
-Claude will autonomously call `list_profiles` → `create_campaign` → `generate_creatives` and return the URLs.
+Claude will autonomously call `list_profiles` → `create_campaign` → `generate_creatives` → `list_creatives` and return the URLs.
 
 ---
 
@@ -150,18 +127,16 @@ Claude will autonomously call `list_profiles` → `create_campaign` → `generat
 2. list_profiles(client_id)              → get profile IDs
    └─ or generate_profiles(...)         → if no profiles yet
 3. create_campaign(client_id, ...)       → get campaign_id
-4. generate_creatives(campaign_id)       → wait=true, get image_url[]
+4. generate_creatives(campaign_id)       → starts background generation
+5. list_creatives(campaign_id)           → poll until images appear
 ```
 
 ---
 
 ## Error messages
 
-The MCP server returns human-readable errors as text content:
-
 | Situation | Message |
 |---|---|
-| Not configured | `Not configured. Run: creatads auth login` |
-| Invalid key | `Invalid or revoked API key. Run: creatads auth login` |
-| No subscription | `Premium subscription required. Upgrade at https://creatads.app/pricing` |
+| Missing or invalid key | `Invalid or revoked API key` |
+| No subscription | `Premium subscription required. Upgrade at https://creatads.co/pricing` |
 | Missing param | `Missing required parameter: <name>` |
