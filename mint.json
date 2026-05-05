@@ -27,59 +27,49 @@
   ],
   "navigation": [
     {
-      "tab": "Français",
-      "groups": [
-        {
-          "group": "Guide utilisateur",
-          "pages": [
-            "fr/users/introduction",
-            "fr/users/demarrage",
-            "fr/users/studio-ia",
-            "fr/users/campagnes",
-            "fr/users/profils",
-            "fr/users/brand-kit",
-            "fr/users/credits"
-          ]
-        },
-        {
-          "group": "Développeurs",
-          "pages": [
-            "fr/developers/introduction",
-            "fr/developers/authentication",
-            "fr/developers/cli",
-            "fr/developers/sdk",
-            "fr/developers/mcp",
-            "fr/developers/workflows"
-          ]
-        }
+      "group": "Guide utilisateur",
+      "pages": [
+        "fr/users/introduction",
+        "fr/users/demarrage",
+        "fr/users/studio-ia",
+        "fr/users/campagnes",
+        "fr/users/profils",
+        "fr/users/brand-kit",
+        "fr/users/credits"
       ]
     },
     {
-      "tab": "English",
-      "groups": [
-        {
-          "group": "User Guide",
-          "pages": [
-            "en/users/introduction",
-            "en/users/getting-started",
-            "en/users/studio",
-            "en/users/campaigns",
-            "en/users/profiles",
-            "en/users/brand-kit",
-            "en/users/credits"
-          ]
-        },
-        {
-          "group": "Developers",
-          "pages": [
-            "en/developers/introduction",
-            "en/developers/authentication",
-            "en/developers/cli",
-            "en/developers/sdk",
-            "en/developers/mcp",
-            "en/developers/workflows"
-          ]
-        }
+      "group": "Développeurs",
+      "pages": [
+        "fr/developers/introduction",
+        "fr/developers/authentication",
+        "fr/developers/cli",
+        "fr/developers/sdk",
+        "fr/developers/mcp",
+        "fr/developers/workflows"
+      ]
+    },
+    {
+      "group": "User Guide",
+      "pages": [
+        "en/users/introduction",
+        "en/users/getting-started",
+        "en/users/studio",
+        "en/users/campaigns",
+        "en/users/profiles",
+        "en/users/brand-kit",
+        "en/users/credits"
+      ]
+    },
+    {
+      "group": "Developers",
+      "pages": [
+        "en/developers/introduction",
+        "en/developers/authentication",
+        "en/developers/cli",
+        "en/developers/sdk",
+        "en/developers/mcp",
+        "en/developers/workflows"
       ]
     }
   ],
