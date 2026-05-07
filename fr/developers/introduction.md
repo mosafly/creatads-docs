@@ -17,7 +17,7 @@ Les trois partagent la même authentification (clé API) et la même API REST so
 ## Prérequis
 
 - Un compte CreatAds sur [creatads.co](https://creatads.co)
-- Un **abonnement actif** (Studio, Agence ou Scale) — la plateforme développeur est réservée aux abonnés premium
+- Un **abonnement actif** (Fondateur, Croissance ou Agence) — la plateforme développeur est réservée aux abonnés premium
 - Une clé API — générez-en une dans **Paramètres → API**
 
 ## Démarrage rapide (5 minutes)
@@ -95,8 +95,8 @@ Les quotas de génération sont partagés avec l'application web — la même li
 
 | Plan | Générations/mois |
 |---|---|
-| Studio | 60 |
-| Agence | 250 |
-| Scale | Illimité |
+| Fondateur | 60 |
+| Croissance | 250 |
+| Agence | Illimité |
 
 Les requêtes API (list, create, etc.) ne sont pas comptées dans votre quota — seuls les appels de génération le sont.

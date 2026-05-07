@@ -6,10 +6,10 @@
 
 | Plan | Credits / month | Price | For whom |
 |---|---|---|---|
-| **Solo** | 2 generations | Free | Discovery |
-| **Studio** | 60 generations | €49/month | Freelancers, small brands |
-| **Agency** | 250 generations | €149/month | Agencies, teams |
-| **Scale** | Unlimited | €299/month | High volumes, intensive production |
+| **Starter** | 2 generations | Free | Discovery |
+| **Founder** | 60 generations | €49/month | Freelancers, small brands |
+| **Growth** | 250 generations | €149/month | Agencies, teams |
+| **Agency** | Unlimited | €299/month | High volumes, intensive production |
 
 ---
 
@@ -30,7 +30,7 @@ Credits renew automatically at the start of each monthly billing cycle. They do 
 Your balance is shown at the bottom of the sidebar in the **Credits** block:
 
 ```
-Credits                          Studio
+Credits                          Founder
 ████████░░  8 / 60       33% remaining
 ```
 
@@ -40,7 +40,7 @@ An alert appears (blinking red dot) when you reach 80% consumption.
 
 ## Upgrade
 
-Click **Upgrade to Studio →** at the bottom of the sidebar, or go to **Settings → Subscription**.
+Click **Upgrade to Founder →** at the bottom of the sidebar, or go to **Settings → Subscription**.
 
 Plan changes take effect immediately. Credits from the new plan are added to the current cycle.
 
@@ -58,8 +58,8 @@ In **Settings → Subscription**, you can:
 
 ## Free plan — limits
 
-The Solo (free) plan is limited to 2 generations. It does not include:
+The Starter (free) plan is limited to 2 generations. It does not include:
 - Brand Setup and audience profile generation
 - Meta Ads (direct publishing)
 
-These features require an active subscription (Studio or higher).
+These features require an active subscription (Founder or higher).

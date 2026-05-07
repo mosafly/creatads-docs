@@ -17,7 +17,7 @@ All three share the same authentication (API key) and the same underlying REST A
 ## Prerequisites
 
 - A CreatAds account at [creatads.co](https://creatads.co)
-- An **active subscription** (Studio, Agence, or Scale) — the developer platform is premium-only
+- An **active subscription** (Founder, Growth, or Agency) — the developer platform is premium-only
 - An API key — generate one in **Settings → API**
 
 ## Quickstart (5 minutes)
@@ -95,8 +95,8 @@ Generation quotas are shared with the web app — the same monthly limit applies
 
 | Plan | Generations/month |
 |---|---|
-| Studio | 60 |
-| Agence | 250 |
-| Scale | Unlimited |
+| Founder | 60 |
+| Growth | 250 |
+| Agency | Unlimited |
 
 API requests (list, create, etc.) are not counted against your quota — only generation calls.

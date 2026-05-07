@@ -6,10 +6,10 @@
 
 | Plan | Crédits / mois | Prix | Pour qui |
 |---|---|---|---|
-| **Solo** | 2 générations | Gratuit | Découverte |
-| **Studio** | 60 générations | 49 €/mois | Indépendants, petites marques |
-| **Agence** | 250 générations | 149 €/mois | Agences, équipes |
-| **Scale** | Illimité | 299 €/mois | Volumes élevés, production intensive |
+| **Starter** | 2 générations | Gratuit | Découverte |
+| **Fondateur** | 60 générations | 49 €/mois | Indépendants, petites marques |
+| **Croissance** | 250 générations | 149 €/mois | Agences, équipes |
+| **Agence** | Illimité | 299 €/mois | Volumes élevés, production intensive |
 
 ---
 
@@ -30,7 +30,7 @@ Les crédits se renouvellent automatiquement à chaque début de cycle de factur
 Votre solde est affiché en bas de la sidebar dans le bloc **Crédits** :
 
 ```
-Crédits                          Studio
+Crédits                          Fondateur
 ████████░░  8 / 60       33% restant
 ```
 
@@ -40,7 +40,7 @@ Une alerte apparaît (point rouge clignotant) quand vous atteignez 80% de consom
 
 ## Upgrader
 
-Cliquez sur **Passer à Studio →** en bas de la sidebar, ou allez dans **Paramètres → Abonnement**.
+Cliquez sur **Passer à Fondateur →** en bas de la sidebar, ou allez dans **Paramètres → Abonnement**.
 
 Le changement de plan est effectif immédiatement. Les crédits du nouveau plan sont ajoutés au cycle en cours.
 
@@ -58,8 +58,8 @@ Dans **Paramètres → Abonnement**, vous pouvez :
 
 ## Plan gratuit — limites
 
-Le plan Solo (gratuit) est limité à 2 générations. Il n'inclut pas :
+Le plan Starter (gratuit) est limité à 2 générations. Il n'inclut pas :
 - Brand Setup et génération de profils d'audience
 - Meta Ads (publication directe)
 
-Ces fonctionnalités nécessitent un abonnement actif (Studio ou supérieur).
+Ces fonctionnalités nécessitent un abonnement actif (Fondateur ou supérieur).
