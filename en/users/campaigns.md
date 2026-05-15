@@ -27,7 +27,7 @@ Accepted formats: PNG, JPG. Import from your computer, your library, or a templa
 **Audience profiles**
 Select up to 12 profiles. Each profile generates creatives tailored to its persona, pain point, and message angle.
 
-> No profiles yet? → [Generate profiles](./profiles.md)
+> No profiles yet? → [Generate profiles](./angles.md)
 
 **CTA text**
 The action button on the ad. E.g.: `Discover`, `Order`, `Shop now`.

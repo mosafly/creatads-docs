@@ -141,14 +141,14 @@ Personas d'audience utilisées pour cibler les campagnes.
 
 ### `profiles list`
 ```bash
-creatads profiles list
-creatads profiles list --client <id>
+creatads angles list
+creatads angles list --client <id>
 ```
 
 ### `profiles get <id>`
 Affiche le détail complet d'un profil.
 ```bash
-creatads profiles get c4764793-527f-4afc-8126-e0a3a34cfe7d
+creatads angles get c4764793-527f-4afc-8126-e0a3a34cfe7d
 
 # Seniors (65+) & Retirees in Abidjan
 # ────────────────────────────────────────────────────────────
@@ -164,9 +164,9 @@ creatads profiles get c4764793-527f-4afc-8126-e0a3a34cfe7d
 ```
 
 ### `profiles generate`
-Génère 10 personas IA depuis une description de marque ou produit.
+Génère 10 angles IA depuis une description de marque ou produit.
 ```bash
-creatads profiles generate \
+creatads angles generate \
   --summary "French DTC brand selling minimalist leather wallets to urban professionals aged 25-40, focusing on quality and sustainability" \
   --language fr
 

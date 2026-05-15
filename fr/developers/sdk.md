@@ -39,19 +39,19 @@ const newClient = await client.createClient("Nike France");
 
 ```typescript
 // Lister les profils d'un client
-const profiles = await client.listProfiles(clientId);
-// [{ id, client_id, persona, pain_point, angle, created_at }]
+const profiles = await client.listAngles(clientId);
+// [{ id, client_id, name, hook, awareness_level, visual_style, copy_direction, created_at }]
 
-// Obtenir un profil unique
-const profile = await client.getProfile(profileId);
+// Obtenir un angle unique
+const profile = await client.getAngle(profileId);
 
 // Générer 10 profils IA depuis une description de marque
-const generated = await client.generateProfiles(
+const generated = await client.generateAngles(
   clientId,
   "French eco-friendly skincare brand targeting urban women 25-40",
   "fr" // langue : "fr" | "en"
 );
-// Retourne Profile[] — déjà sauvegardés dans le compte
+// Retourne Angle[] — déjà sauvegardés dans le compte
 ```
 
 ---
@@ -70,7 +70,7 @@ const campaign = await client.createCampaign({
   offer_text: "-20% ce weekend",
   aspect_ratio: "1:1,9:16",       // séparé par virgules
   volume: 6,
-  selected_profile_ids: [profileId1, profileId2],
+  selected_angle_ids: [profileId1, profileId2],
   landing_url: "https://example.com",
 });
 
@@ -166,12 +166,14 @@ interface Client {
   onboarding_completed?: boolean;
 }
 
-interface Profile {
+interface Angle {
   id: string;
   client_id: string;
-  persona: string;
-  pain_point: string;
-  angle: string;
+  name: string;
+  hook: string;
+  awareness_level: "unaware" | "problem_aware" | "solution_aware" | "product_aware" | "most_aware";
+  visual_style: "ugc" | "studio" | "lifestyle" | "text_heavy" | "before_after" | "demo";
+  copy_direction: string;
   created_at: string;
 }
 
@@ -184,7 +186,7 @@ interface Campaign {
   offer_text: string;
   aspect_ratio: string;
   volume: number;
-  selected_profile_ids: string[];
+  selected_angle_ids: string[];
   reference_image_url: string | null;
   product_image_url: string | null;
   created_at: string;

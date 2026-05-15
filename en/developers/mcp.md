@@ -58,7 +58,7 @@ cta_text         (string) — e.g. "Découvrir", "Shop now"
 offer_text       (string) — e.g. "-20% ce weekend"
 aspect_ratio     (string) — comma-separated: "1:1", "4:5", "9:16", "1.91:1"
 volume           (number) — total creatives to generate (1–60)
-selected_profile_ids  (string[]) — profile IDs from list_profiles
+selected_angle_ids  (string[]) — profile IDs from list_angles
 landing_url      (string)
 ```
 
@@ -75,20 +75,20 @@ List generated creatives for a campaign.
 campaign_id (string, required)
 ```
 
-### `list_profiles`
-List audience personas for a client.
+### `list_angles`
+List creative angles for a client.
 ```
 client_id (string, required)
 ```
 
-### `get_profile`
+### `get_angle`
 Get full detail of a single profile.
 ```
-profile_id (string, required)
+angle_id (string, required)
 ```
 
-### `generate_profiles`
-Generate 10 AI audience personas from a brand description.
+### `generate_angles`
+Generate 10 Andromeda-native creative angles from a brand description.
 ```
 client_id         (string, required)
 research_summary  (string, required) — brand/product description
@@ -116,7 +116,7 @@ Use the creatads tools to:
 3. Generate the creatives, then poll list_creatives until images are ready and return the URLs
 ```
 
-Claude will autonomously call `list_profiles` → `create_campaign` → `generate_creatives` → `list_creatives` and return the URLs.
+Claude will autonomously call `list_angles` → `create_campaign` → `generate_creatives` → `list_creatives` and return the URLs.
 
 ---
 
@@ -124,8 +124,8 @@ Claude will autonomously call `list_profiles` → `create_campaign` → `generat
 
 ```
 1. list_clients                          → get client_id
-2. list_profiles(client_id)              → get profile IDs
-   └─ or generate_profiles(...)         → if no profiles yet
+2. list_angles(client_id)              → get profile IDs
+   └─ or generate_angles(...)         → if no profiles yet
 3. create_campaign(client_id, ...)       → get campaign_id
 4. generate_creatives(campaign_id)       → starts background generation
 5. list_creatives(campaign_id)           → poll until images appear

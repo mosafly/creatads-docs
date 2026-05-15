@@ -59,7 +59,7 @@ You can create as many workspaces as needed. Each workspace has its own campaign
 For best results, follow this order:
 
 1. [Brand Kit](./brand-kit.md) — enter your brand colors and description
-2. [Audience Profiles](./profiles.md) — generate 10 AI personas from your description
+2. [Creative Angles](./angles.md) — generate 10 AI personas from your description
 3. [Campaign](./campaigns.md) — create a campaign by selecting your profiles
 4. Download or publish your creatives
 

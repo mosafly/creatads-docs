@@ -12,12 +12,12 @@ creatads clients create "Maison Léon"
 creatads clients use <new-id>
 
 # Generate profiles from brand description
-creatads profiles generate \
+creatads angles generate \
   --summary "French artisan chocolate brand, premium positioning, gift market, targeting 30-55 year olds looking for quality gifts for special occasions. Key differentiator: bean-to-bar, single origin, Parisian workshops." \
   --language fr
 
 # Review profiles and note the IDs of the 2-3 most relevant
-creatads profiles list
+creatads angles list
 ```
 
 Total: ~2 min. Client is ready to generate campaigns.
@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
     offer_text: offer,
     aspect_ratio: "1:1,9:16",
     volume: 4,
-    selected_profile_ids: profileIds,
+    selected_angle_ids: profileIds,
   });
 
   // Trigger generation
@@ -128,7 +128,7 @@ CTA: 'En profiter'. Donne-moi les URLs des images générées."
 
 Claude will:
 1. Call `list_clients` → find Maison Léon
-2. Call `list_profiles` → find relevant profiles
+2. Call `list_angles` → find relevant profiles
 3. Call `create_campaign` with your brief
 4. Call `generate_creatives` (wait=true, ~3-4 min)
 5. Return the image URLs
@@ -147,7 +147,7 @@ async function launchFirstCampaign(apiKey: string, brandDescription: string) {
   const client = await creatads.createClient("My Brand");
 
   // 2. Generate profiles
-  const profiles = await creatads.generateProfiles(
+  const profiles = await creatads.generateAngles(
     client.id,
     brandDescription,
     "fr"
@@ -163,7 +163,7 @@ async function launchFirstCampaign(apiKey: string, brandDescription: string) {
     cta_text: "Découvrir",
     aspect_ratio: "1:1",
     volume: 4,
-    selected_profile_ids: selectedIds,
+    selected_angle_ids: selectedIds,
   });
 
   // 5. Generate + wait

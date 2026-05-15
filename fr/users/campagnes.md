@@ -1,6 +1,6 @@
 # Campagnes
 
-Générez plusieurs visuels en une seule opération — ciblés par profil d'audience, en plusieurs formats, avec un brief partagé.
+Générez plusieurs visuels en une seule opération — ciblés par angle créatif, en plusieurs formats, avec un brief partagé.
 
 ---
 
@@ -27,7 +27,7 @@ Formats acceptés : PNG, JPG. Importez depuis votre ordinateur, votre librairie 
 **Profils d'audience**  
 Sélectionnez jusqu'à 12 profils. Chaque profil génère des visuels adaptés à son persona, sa douleur et son angle de message.
 
-> Pas encore de profils ? → [Générer des profils](./profils.md)
+> Pas encore de profils ? → [Générer des profils](./angles.md)
 
 **Texte CTA**  
 Le bouton d'action sur la publicité. Ex : `Découvrir`, `Commander`, `En profiter`.
@@ -98,7 +98,7 @@ Chaque visuel reçoit un score basé sur l'accroche visuelle et l'alignement ave
 
 | Objectif | Recommandation |
 |---|---|
-| Test rapide | 1 profil × 1 format × volume 1 |
+| Test rapide | 1 angle × 1 format × volume 1 |
 | A/B testing | 2 profils × 2 formats × volume 2 = 8 créatifs |
 | Campagne complète | 3–5 profils × 3 formats × volume 3 = 27–45 créatifs |
 | Agence multi-client | Script hebdomadaire via CLI ou SDK |

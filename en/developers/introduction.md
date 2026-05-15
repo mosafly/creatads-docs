@@ -46,7 +46,7 @@ creatads clients use <client-id>
 
 ```bash
 # Generate audience profiles from your brand description
-creatads profiles generate \
+creatads angles generate \
   --summary "French e-commerce brand selling eco-friendly home products to urban millennials" \
   --language fr
 

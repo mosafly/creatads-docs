@@ -58,7 +58,7 @@ cta_text         (string) — ex. "Découvrir", "Shop now"
 offer_text       (string) — ex. "-20% ce weekend"
 aspect_ratio     (string) — séparé par virgules : "1:1", "4:5", "9:16", "1.91:1"
 volume           (number) — total de créatifs à générer (1–60)
-selected_profile_ids  (string[]) — IDs de profils issus de list_profiles
+selected_angle_ids  (string[]) — IDs de profils issus de list_angles
 landing_url      (string)
 ```
 
@@ -75,19 +75,19 @@ Liste les créatifs générés pour une campagne.
 campaign_id (string, requis)
 ```
 
-### `list_profiles`
-Liste les personas d'audience d'un client.
+### `list_angles`
+Liste les angles créatifs d'un client.
 ```
 client_id (string, requis)
 ```
 
-### `get_profile`
+### `get_angle`
 Obtient le détail complet d'un profil.
 ```
-profile_id (string, requis)
+angle_id (string, requis)
 ```
 
-### `generate_profiles`
+### `generate_angles`
 Génère 10 personas d'audience IA depuis une description de marque.
 ```
 client_id         (string, requis)
@@ -116,7 +116,7 @@ Use the creatads tools to:
 3. Generate the creatives, then poll list_creatives until images are ready and return the URLs
 ```
 
-Claude appellera de manière autonome `list_profiles` → `create_campaign` → `generate_creatives` → `list_creatives` et retournera les URLs.
+Claude appellera de manière autonome `list_angles` → `create_campaign` → `generate_creatives` → `list_creatives` et retournera les URLs.
 
 ---
 
@@ -124,8 +124,8 @@ Claude appellera de manière autonome `list_profiles` → `create_campaign` → 
 
 ```
 1. list_clients                          → obtenir le client_id
-2. list_profiles(client_id)              → obtenir les IDs de profils
-   └─ ou generate_profiles(...)         → s'il n'y a pas encore de profils
+2. list_angles(client_id)              → obtenir les IDs de profils
+   └─ ou generate_angles(...)         → s'il n'y a pas encore de profils
 3. create_campaign(client_id, ...)       → obtenir le campaign_id
 4. generate_creatives(campaign_id)       → démarre la génération en arrière-plan
 5. list_creatives(campaign_id)           → interroger jusqu'à l'apparition des images

@@ -12,12 +12,12 @@ creatads clients create "Maison Léon"
 creatads clients use <new-id>
 
 # Générer des profils depuis une description de marque
-creatads profiles generate \
+creatads angles generate \
   --summary "French artisan chocolate brand, premium positioning, gift market, targeting 30-55 year olds looking for quality gifts for special occasions. Key differentiator: bean-to-bar, single origin, Parisian workshops." \
   --language fr
 
 # Consulter les profils et noter les IDs des 2-3 plus pertinents
-creatads profiles list
+creatads angles list
 ```
 
 Total : ~2 min. Le client est prêt à générer des campagnes.
@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
     offer_text: offer,
     aspect_ratio: "1:1,9:16",
     volume: 4,
-    selected_profile_ids: profileIds,
+    selected_angle_ids: profileIds,
   });
 
   // Déclencher la génération
@@ -128,7 +128,7 @@ CTA: 'En profiter'. Donne-moi les URLs des images générées."
 
 Claude va :
 1. Appeler `list_clients` → trouver Maison Léon
-2. Appeler `list_profiles` → trouver les profils pertinents
+2. Appeler `list_angles` → trouver les profils pertinents
 3. Appeler `create_campaign` avec votre brief
 4. Appeler `generate_creatives` (wait=true, ~3-4 min)
 5. Retourner les URLs des images
@@ -147,7 +147,7 @@ async function launchFirstCampaign(apiKey: string, brandDescription: string) {
   const client = await creatads.createClient("My Brand");
 
   // 2. Générer les profils
-  const profiles = await creatads.generateProfiles(
+  const profiles = await creatads.generateAngles(
     client.id,
     brandDescription,
     "fr"
@@ -163,7 +163,7 @@ async function launchFirstCampaign(apiKey: string, brandDescription: string) {
     cta_text: "Découvrir",
     aspect_ratio: "1:1",
     volume: 4,
-    selected_profile_ids: selectedIds,
+    selected_angle_ids: selectedIds,
   });
 
   // 5. Générer + attendre
@@ -188,7 +188,7 @@ Plus votre `research_summary` est riche, meilleurs seront les profils. Incluez :
 - `1.91:1` — Facebook Landscape / Link ads
 
 **Stratégie de volume**
-- 1 profil + 1 format → 1 créatif par slot
+- 1 angle + 1 format → 1 créatif par slot
 - Le volume est distribué entre (profils × formats)
 - Pour l'A/B testing : 2 profils × 2 formats × 2 = 8 créatifs au total
 

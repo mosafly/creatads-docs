@@ -137,18 +137,18 @@ creatads creatives list 03d75c13-a9a2-40a0-88b4-acf7a2e702f9
 
 ## profiles
 
-Audience personas used to target campaigns.
+Creative angles used to drive campaign diversity.
 
 ### `profiles list`
 ```bash
-creatads profiles list
-creatads profiles list --client <id>
+creatads angles list
+creatads angles list --client <id>
 ```
 
 ### `profiles get <id>`
 Show full detail of a single profile.
 ```bash
-creatads profiles get c4764793-527f-4afc-8126-e0a3a34cfe7d
+creatads angles get c4764793-527f-4afc-8126-e0a3a34cfe7d
 
 # Seniors (65+) & Retirees in Abidjan
 # ────────────────────────────────────────────────────────────
@@ -164,9 +164,9 @@ creatads profiles get c4764793-527f-4afc-8126-e0a3a34cfe7d
 ```
 
 ### `profiles generate`
-Generate 10 AI personas from a brand/product description.
+Generate 10 AI creative angles from a brand/product description.
 ```bash
-creatads profiles generate \
+creatads angles generate \
   --summary "French DTC brand selling minimalist leather wallets to urban professionals aged 25-40, focusing on quality and sustainability" \
   --language fr
 

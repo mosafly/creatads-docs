@@ -59,7 +59,7 @@ Vous pouvez créer autant d'espaces que nécessaire. Chaque espace a ses propres
 Pour de meilleurs résultats, suivez cet ordre :
 
 1. [Brand Kit](./brand-kit.md) — renseignez les couleurs et la description de votre marque
-2. [Profils d'audience](./profils.md) — générez 10 personas IA depuis votre description
+2. [Angles créatifs](./angles.md) — générez 10 personas IA depuis votre description
 3. [Campagne](./campagnes.md) — créez une campagne en sélectionnant vos profils
 4. Téléchargez ou publiez vos visuels
 
