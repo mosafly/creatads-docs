@@ -1,10 +1,10 @@
-# AI Studio
+# Easy Mode
 
 Generate a unique ad creative in under 2 minutes, without a full brief or campaign.
 
 ---
 
-## When to use AI Studio?
+## When to use Easy Mode?
 
 - Quickly test an idea
 - Generate a one-shot creative for a post or ad

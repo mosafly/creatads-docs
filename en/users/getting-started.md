@@ -30,7 +30,7 @@ You can create as many workspaces as needed. Each workspace has its own campaign
 │  [Client space] │   Content of the active page       │
 │                 │                                    │
 │  — Creation —   │                                    │
-│  AI Studio      │                                    │
+│  Easy Mode      │                                    │
 │  Campaigns      │                                    │
 │  Library        │                                    │
 │  Templates      │                                    │
@@ -63,4 +63,4 @@ For best results, follow this order:
 3. [Campaign](./campaigns.md) — create a campaign by selecting your profiles
 4. Download or publish your creatives
 
-You can also go directly to [AI Studio](./studio.md) for a quick one-shot creative without a campaign.
+You can also go directly to [Easy Mode](./studio.md) for a quick one-shot creative without a campaign.

@@ -1,4 +1,4 @@
-# Campaigns
+# Pro Mode
 
 Generate multiple creatives in a single operation — targeted by audience profile, across multiple formats, with a shared brief.
 

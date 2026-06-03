@@ -9,7 +9,7 @@ Générez des visuels publicitaires Meta en quelques minutes grâce à l'IA.
 | Guide | Contenu |
 |---|---|
 | [Démarrage rapide](./demarrage.md) | Créer un compte, premier espace client, interface |
-| [Studio IA](./studio-ia.md) | Générer un visuel en one-shot |
+| [Mode Facile](./studio-ia.md) | Générer un visuel en one-shot |
 | [Campagnes](./campagnes.md) | Créer et gérer des séries de créatifs |
 | [Angles créatifs](./angles.md) | Cibler avec des personas IA |
 | [Brand Kit](./brand-kit.md) | Couleurs, logo, description de marque |

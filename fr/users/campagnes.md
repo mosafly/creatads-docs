@@ -1,4 +1,4 @@
-# Campagnes
+# Mode Pro
 
 Générez plusieurs visuels en une seule opération — ciblés par angle créatif, en plusieurs formats, avec un brief partagé.
 

@@ -17,7 +17,7 @@
 
 **1 crédit = 1 génération d'image.**
 
-Que vous passiez par le Studio IA ou une campagne, chaque image générée consomme 1 crédit.
+Que vous passiez par le Mode Facile ou une campagne, chaque image générée consomme 1 crédit.
 
 Exemple : une campagne de volume 12 = 12 crédits.
 

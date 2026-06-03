@@ -9,7 +9,7 @@ Generate Meta ad creatives in minutes with AI.
 | Guide | Content |
 |---|---|
 | [Getting Started](./getting-started.md) | Create an account, first client workspace, interface overview |
-| [AI Studio](./studio.md) | Generate a one-shot creative |
+| [Easy Mode](./studio.md) | Generate a one-shot creative |
 | [Campaigns](./campaigns.md) | Create and manage creative series |
 | [Creative Angles](./angles.md) | Target with AI personas |
 | [Brand Kit](./brand-kit.md) | Colors, logo, brand description |

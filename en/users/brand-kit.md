@@ -32,7 +32,7 @@ The Brand Kit centralizes a brand's visual identity. When active, it is applied 
 
 ## Activate the Brand Kit on a generation
 
-### AI Studio
+### Easy Mode
 If a Brand Kit is configured, it is active automatically. You see it displayed below the form (`Acme · active`).
 
 ### Campaigns

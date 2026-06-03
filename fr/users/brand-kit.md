@@ -32,7 +32,7 @@ Le Brand Kit centralise l'identité visuelle d'une marque. Activé, il est appli
 
 ## Activer le Brand Kit sur une génération
 
-### Studio IA
+### Mode Facile
 Si un Brand Kit est configuré, il est actif automatiquement. Vous le voyez affiché sous le formulaire (`Acme · actif`).
 
 ### Campagnes

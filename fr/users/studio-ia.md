@@ -1,10 +1,10 @@
-# Studio IA
+# Mode Facile
 
 Générez un visuel publicitaire unique en moins de 2 minutes, sans brief complet ni campagne.
 
 ---
 
-## Quand utiliser le Studio IA ?
+## Quand utiliser le Mode Facile ?
 
 - Tester une idée rapidement
 - Générer un visuel one-shot pour un post ou une annonce

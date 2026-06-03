@@ -17,7 +17,7 @@
 
 **1 credit = 1 image generation.**
 
-Whether you use AI Studio or a campaign, every image generated uses 1 credit.
+Whether you use Easy Mode or a campaign, every image generated uses 1 credit.
 
 Example: a campaign with volume 12 = 12 credits.
 

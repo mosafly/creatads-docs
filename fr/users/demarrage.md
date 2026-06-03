@@ -30,7 +30,7 @@ Vous pouvez créer autant d'espaces que nécessaire. Chaque espace a ses propres
 │  [Espace client]│   Contenu de la page active        │
 │                 │                                    │
 │  — Création —   │                                    │
-│  Studio IA      │                                    │
+│  Mode Facile      │                                    │
 │  Campagnes      │                                    │
 │  Librairie      │                                    │
 │  Templates      │                                    │
@@ -63,4 +63,4 @@ Pour de meilleurs résultats, suivez cet ordre :
 3. [Campagne](./campagnes.md) — créez une campagne en sélectionnant vos profils
 4. Téléchargez ou publiez vos visuels
 
-Vous pouvez aussi aller directement au [Studio IA](./studio-ia.md) pour un visuel rapide sans campagne.
+Vous pouvez aussi aller directement au [Mode Facile](./studio-ia.md) pour un visuel rapide sans campagne.
