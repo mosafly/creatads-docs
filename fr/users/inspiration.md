@@ -20,6 +20,8 @@ Depuis l'onglet **Concurrents**, vous pouvez :
 
 L'ajout ou la confirmation d'une marque ne lance jamais de collecte tout seul.
 
+Lorsqu'un logo de source vérifiée est disponible, il apparaît avec la marque. Sinon, CreatAds affiche ses initiales plutôt qu'une image supposée.
+
 ## Voir les publicités d'un concurrent
 
 Après confirmation, **Voir ses publicités** ouvre un préflight qui indique le marché, l'état du cache et votre quota Ads Library. Un cache frais ouvre immédiatement les résultats sans nouvelle collecte ni consentement supplémentaire.

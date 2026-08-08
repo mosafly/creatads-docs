@@ -20,6 +20,8 @@ From the **Competitors** tab, you can:
 
 Adding or confirming a brand never starts a collection on its own.
 
+When a verified-source logo is available, it appears with the brand. Otherwise, CreatAds shows its initials instead of a guessed image.
+
 ## See a competitor's ads
 
 After confirmation, **See ads** opens a preflight with the market, cache state and your Ads Library quota. A fresh cache opens immediately with no new collection or additional consent.
