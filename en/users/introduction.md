@@ -13,6 +13,7 @@ Generate Meta ad creatives in minutes with AI.
 | [Campaigns](./campaigns.md) | Create and manage creative series |
 | [Creative Angles](./angles.md) | Target with AI personas |
 | [Brand Kit](./brand-kit.md) | Colors, logo, brand description |
+| [Inspiration and competitors](./inspiration.md) | Explore ideas, review and monitor a brand |
 | [Credits & Subscription](./credits.md) | Plans, limits, renewal |
 
 ---

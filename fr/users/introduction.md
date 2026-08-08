@@ -13,6 +13,7 @@ Générez des visuels publicitaires Meta en quelques minutes grâce à l'IA.
 | [Campagnes](./campagnes.md) | Créer et gérer des séries de créatifs |
 | [Angles créatifs](./angles.md) | Cibler avec des personas IA |
 | [Brand Kit](./brand-kit.md) | Couleurs, logo, description de marque |
+| [Inspiration et concurrents](./inspiration.md) | Explorer des pistes, vérifier et suivre une marque |
 | [Crédits & abonnement](./credits.md) | Plans, limites, renouvellement |
 
 ---
