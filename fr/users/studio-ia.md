@@ -1,68 +1,72 @@
 # Mode Facile
 
-Générez un visuel publicitaire unique en moins de 2 minutes, sans brief complet ni campagne.
+Mode Facile (`/generate`) permet de générer rapidement une à trois créatives sans configurer un lot complet.
 
----
+## Entrées
 
-## Quand utiliser le Mode Facile ?
+- **Référence** : ambiance, composition ou publicité à reproduire/reformater.
+- **Produit** : photo à conserver fidèlement dans la sortie.
+- **Brand Kit** : nom, couleurs, logos et contexte de marque.
+- **Angle** : hook, niveau de conscience, style et direction de copy.
+- **Format** : ratio d’image et mode créatif.
 
-- Tester une idée rapidement
-- Générer un visuel one-shot pour un post ou une annonce
-- Itérer sur une image existante (reformater, varier)
+Au moins une image ou un prompt modifié est requis pour lancer une génération.
 
-Pour générer plusieurs visuels avec ciblage par profil → utilisez les [Campagnes](./campagnes.md).
+## Modes disponibles
 
----
+### Styles et transformations
 
-## Générer un visuel
+- Studio
+- Lifestyle
+- UGC
+- Reproduire (`reproduce`)
+- Reformater (`reformat`)
 
-### 1. Choisissez vos images (optionnel)
+### Cinq formats publicitaires
 
-**Image de référence** — une publicité existante, une photo de marque, une ambiance. L'IA s'en inspire pour le style et la mise en scène.
+1. Us vs Them
+2. Anti-marketing
+3. UGC statique
+4. Témoignage
+5. Offre limitée
 
-**Image produit** — le produit à mettre en avant. Téléchargez un PNG ou JPG, ou choisissez depuis votre librairie.
+Le hook saisi est envoyé dans le champ adapté : headline, témoignage ou offre selon le format.
 
-> Si vous avez un brand kit actif, ses couleurs et son identité visuelle sont intégrés automatiquement.
+## Ratios
 
-### 2. Décrivez le visuel
+- `1:1`
+- `4:5`
+- `9:16`
+- `1.91:1`
 
-Rédigez un brief court dans le champ texte (500 caractères max) :
+## Volume et presets
 
-```
-Ambiance café parisien, lumière dorée. Packshot chocolat noir sur une table 
-en marbre. Texte : "Livraison offerte dès 35€".
-```
+Sans preset, choisissez 1, 2 ou 3 variantes. CreatAds utilise une rotation de modèles pour diversifier les résultats.
 
-Utilisez les suggestions IA (boutons sous le champ) pour enrichir votre brief.
+Avec des presets, une image est produite par preset sélectionné. Exemples : podium, flat lay, application visage, unboxing, split avant/après ou carte cinq étoiles.
 
-### 3. Choisissez le format
+## Inspiration et Clone
 
-| Format | Dimensions | Usage |
-|---|---|---|
-| Carré `1:1` | 1080×1080 | Feed Facebook & Instagram |
-| Story `9:16` | 1080×1920 | Stories & Reels |
-| Paysage `1.91:1` | 1200×628 | Facebook Link ads |
+Le rail supérieur affiche :
 
-### 4. Générez
+- Inspirations ;
+- Mes créas ;
+- Favoris ;
+- Winners.
 
-Cliquez sur **Générer**. La génération prend **30–90 secondes**.
+Favoris et Winners sont encore indiqués comme « bientôt disponible ».
 
-Un compteur de progression affiche les étapes en temps réel.
+Cliquez sur la baguette d’une inspiration pour :
 
----
+1. ré-héberger l’image ;
+2. l’utiliser comme référence ;
+3. passer en mode Reproduire ;
+4. supprimer explicitement la marque source pendant la régénération.
 
-## Résultat
-
-Une fois le visuel prêt :
-
-- **Télécharger** — PNG haute résolution
-- **Publier sur Meta** — envoi direct via Meta Ads (connexion Meta requise)
-- **Itérer** — modifiez le brief et régénérez
-
----
+Mode Facile n’appelle pas l’analyse textuelle optionnelle du clone.
 
 ## Crédits
 
-Chaque génération consomme **1 crédit**. Votre solde est affiché en bas de la sidebar.
+**1 image = 1 crédit.** Trois variantes consomment trois crédits. Une génération en erreur ne doit pas être présentée comme une image livrée.
 
-→ Voir [Crédits & abonnement](./credits.md)
+Voir [Crédits et abonnement](./credits.md).

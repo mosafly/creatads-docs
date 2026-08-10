@@ -1,65 +1,33 @@
-# Credits & Subscription
+# Credits and plans
 
----
+| Plan | Monthly price | Image credits | Main access |
+|---|---:|---:|---|
+| Starter | EUR 0 | 3 | Easy Mode, Inspiration teaser |
+| Beta Tester | EUR 0 | 15 | Temporary premium feature access |
+| Solo | EUR 19 | 30 | Easy/Pro modes, Brand Kit, Ads Library |
+| Founder | EUR 49 | 80 | Solo plus API, MCP/CLI and Meta Ads |
+| Growth | EUR 149 | 350 | Higher volume and unlimited workspaces |
+| Agency | EUR 299 | Unlimited | High-volume production |
 
-## Plans
+## Consumption
 
-| Plan | Credits / month | Price | For whom |
-|---|---|---|---|
-| **Starter** | 2 generations | Free | Discovery |
-| **Founder** | 60 generations | €49/month | Freelancers, small brands |
-| **Growth** | 250 generations | €149/month | Agencies, teams |
-| **Agency** | Unlimited | €299/month | High volumes, intensive production |
+One generated image equals one credit in Easy Mode, presets, Pro Mode, API and MCP. Creative analysis, reads, campaign creation and angle generation do not consume image credits.
 
----
+Usage resets by UTC calendar month, not on the subscription anniversary. Admin-awarded top-up credits add to the monthly quota and persist until consumed.
 
-## How credits work
+## Ads Library searches
 
-**1 credit = 1 image generation.**
+| Plan | New manual searches/month |
+|---|---:|
+| Starter | 0 |
+| Beta Tester | 15 |
+| Solo | 20 |
+| Founder | 75 |
+| Growth | 250 |
+| Agency | 1,000 |
 
-Whether you use Easy Mode or a campaign, every image generated uses 1 credit.
+Explorer, cache hits and competitor previews during onboarding do not consume this manual-search quota.
 
-Example: a campaign with volume 12 = 12 credits.
+Starter sees up to 9 Inspiration cards but not the full Ads Library page. Pro Mode, Brand Kit and the full Ads Library start at Solo. The normal paid offer exposes API keys, MCP/CLI and Meta Ads from Founder.
 
-Credits renew automatically at the start of each monthly billing cycle. They do not roll over from one month to the next.
-
----
-
-## Check your balance
-
-Your balance is shown at the bottom of the sidebar in the **Credits** block:
-
-```
-Credits                          Founder
-████████░░  8 / 60       33% remaining
-```
-
-An alert appears (blinking red dot) when you reach 80% consumption.
-
----
-
-## Upgrade
-
-Click **Upgrade to Founder →** at the bottom of the sidebar, or go to **Settings → Subscription**.
-
-Plan changes take effect immediately. Credits from the new plan are added to the current cycle.
-
----
-
-## Manage your subscription
-
-In **Settings → Subscription**, you can:
-- View your current plan and renewal date
-- Change plans (upgrade or downgrade)
-- Access your invoices
-- Cancel your subscription
-
----
-
-## Free plan — limits
-
-The Starter (free) plan is limited to 2 generations. It does not include:
-- Brand Setup and audience profile generation
-- Meta Ads (direct publishing)
-
-These features require an active subscription (Founder or higher).
+Manage usage, plans, invoices and cancellation from **Settings > Subscription**.

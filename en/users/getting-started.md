@@ -1,66 +1,32 @@
-# Getting Started
+# Getting started
 
-## 1. Create an account
+## Create an account
 
-Go to [creatads.app](https://creatads.app) and click **Get started for free**.
+Go to [creatads.co](https://creatads.co) and select **Start for free**. Starter includes 3 generations and does not require a payment card.
 
-The free plan includes 2 generations to try the platform. No credit card required.
+## Complete onboarding
 
----
+The current flow asks about your business, analyzes your website, proposes a Brand Kit, previews ads from your niche and detected competitors, then lets you start generating or finish brand setup.
 
-## 2. Create your first client workspace
+Automatic extraction can include the brand name, description, logo, colors, product images, niche, market, Explorer category and competitors. Anti-bot protection, missing metadata and some SVG logos can reduce extraction quality; review the result before saving it. A manual fallback is available.
 
-On your first login, the onboarding assistant guides you through creating a **client workspace** — an isolated workspace for a brand or advertiser.
+## Workspaces
 
-**Workspace name**: use the brand name (e.g. "Maison Léon", "Nike France").
+Each client workspace isolates one brand's Brand Kit, angles, media, campaigns and creatives. Always check the active workspace before importing or generating.
 
-You can create as many workspaces as needed. Each workspace has its own campaigns, profiles, and brand kit.
+## Choose a mode
 
-> For agencies: create one workspace per client. Switch between workspaces using the selector at the top of the sidebar.
+- **Easy Mode** at `/generate`: 1 to 3 variants, scene presets, ad formats and quick inspiration cloning.
+- **Pro Mode** at `/campaigns`: multiple ratios, modes and angles, cartesian batches, progress recovery and Meta preparation.
 
----
+Pro Mode is available from Solo and during active beta access.
 
-## 3. The interface
+## First recommended workflow
 
-```
-┌─────────────────┬────────────────────────────────────┐
-│   Sidebar       │   Main area                        │
-│                 │                                    │
-│  [Logo]         │                                    │
-│  [Client space] │   Content of the active page       │
-│                 │                                    │
-│  — Creation —   │                                    │
-│  Easy Mode      │                                    │
-│  Campaigns      │                                    │
-│  Library        │                                    │
-│  Templates      │                                    │
-│                 │                                    │
-│  — Audiences —  │                                    │
-│  Brand Setup    │                                    │
-│  Profiles       │                                    │
-│                 │                                    │
-│  — Workspace —  │                                    │
-│  Analyze        │                                    │
-│  Calendar       │                                    │
-│                 │                                    │
-│  Settings       │                                    │
-│  [Credits]      │                                    │
-└─────────────────┴────────────────────────────────────┘
-```
+1. Review the [Brand Kit](./brand-kit.md).
+2. Generate ten [creative angles](./angles.md).
+3. Select a reference in [Inspiration](./inspiration.md).
+4. Generate 1 to 3 variants in [Easy Mode](./studio.md).
+5. Move to [Pro Mode](./campaigns.md) when the direction is validated.
 
-**Creation** — generate and manage your creatives
-**Audiences** — configure profiles and brand identity
-**Workspace** — analyze your creatives, view the calendar
-
----
-
-## 4. Recommended first flow
-
-For best results, follow this order:
-
-1. [Brand Kit](./brand-kit.md) — enter your brand colors and description
-2. [Creative Angles](./angles.md) — generate 10 AI personas from your description
-3. [Campaign](./campaigns.md) — create a campaign by selecting your profiles
-4. Download or publish your creatives
-
-You can also go directly to [Easy Mode](./studio.md) for a quick one-shot creative without a campaign.
+Each generated image consumes one credit.

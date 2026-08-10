@@ -1,104 +1,73 @@
 # Mode Pro
 
-Générez plusieurs visuels en une seule opération — ciblés par angle créatif, en plusieurs formats, avec un brief partagé.
+Mode Pro (`/campaigns`) génère des lots multi-formats et multi-angles à partir d’une configuration unique.
 
----
+## Construire un lot
 
-## Créer une campagne
+Sélectionnez :
 
-La campagne se crée en **3 étapes**.
+- une image de référence et/ou une image produit ;
+- un ou plusieurs ratios ;
+- un ou plusieurs modes ;
+- zéro, un ou plusieurs angles ;
+- des presets de scène éventuels ;
+- un volume ;
+- la langue de sortie ;
+- le Brand Kit, le CTA et l’offre.
 
----
+Le total suit la formule :
 
-### Étape 1 — Images
+```text
+ratios × scènes/modes × angles × volume
+```
 
-**Image de référence** *(optionnel)*  
-Un visuel existant dont l'IA s'inspire pour le style et la composition. Peut être une pub concurrente, une photo de marque, un moodboard.
+Lorsqu’au moins un preset est sélectionné, le multiplicateur de volume passe automatiquement à 1 : chaque preset représente déjà une scène distincte.
 
-**Image produit** *(optionnel)*  
-Le produit à mettre en avant. L'IA l'intègre dans la scène générée.
+Au-delà de 60 images, CreatAds demande une confirmation. Cette confirmation est un garde-fou, pas une limite dure.
 
-Formats acceptés : PNG, JPG. Importez depuis votre ordinateur, votre librairie ou un template.
+## Ratios
 
----
+- `1:1`
+- `4:5`
+- `9:16`
+- `16:9`
 
-### Étape 2 — Ciblage
+## Les 13 modes
 
-**Profils d'audience**  
-Sélectionnez jusqu'à 12 profils. Chaque profil génère des visuels adaptés à son persona, sa douleur et son angle de message.
-
-> Pas encore de profils ? → [Générer des profils](./angles.md)
-
-**Texte CTA**  
-Le bouton d'action sur la publicité. Ex : `Découvrir`, `Commander`, `En profiter`.
-
-**Texte d'offre**  
-La promotion ou l'accroche principale. Ex : `-25% ce weekend`, `Livraison offerte dès 35€`.
-
-**Brand Kit**  
-Activez le toggle pour appliquer automatiquement vos couleurs et identité visuelle.
-
----
-
-### Étape 3 — Paramètres
-
-**Volume**  
-Nombre total de créatifs à générer (1–60). Le volume est distribué entre les profils et formats sélectionnés.
-
-Exemple : 3 profils × 2 formats = 6 slots. Volume 12 → 2 créatifs par slot.
-
-**Formats**  
-Cochez un ou plusieurs formats :
-- `1:1` — Feed carré
-- `4:5` — Feed portrait
-- `9:16` — Stories & Reels
-- `1.91:1` — Paysage
-
-**Langue**  
-Langue des textes générés sur les visuels : Français, Anglais, Espagnol, etc.
-
-**Document de contexte** *(optionnel)*  
-Téléchargez un brief, un PDF ou une URL de page produit pour enrichir le contexte de génération.
-
----
-
-## Lancer la génération
-
-Cliquez sur **Générer**. La progression s'affiche en temps réel.
-
-Durée estimée : **2–5 minutes** selon le volume (file d'attente fal.ai).
-
----
-
-## Gérer les créatifs
-
-Une fois la génération terminée, vos créatifs apparaissent dans la galerie de la campagne.
-
-**Vues disponibles**
-- Grille — aperçu visuel rapide
-- Liste — détails (profil, format, score, date)
-
-**Filtres**
-- Par profil d'audience
-- Par format
-
-**Actions sur un créatif**
-- Télécharger (PNG)
-- Créer une variation (même style, nouveau contenu)
-- Reformater dans un autre ratio
-- Voir l'arborescence (variantes et itérations)
-- Exporter en ZIP (sélection multiple)
-
-**Score créatif**  
-Chaque visuel reçoit un score basé sur l'accroche visuelle et l'alignement avec le profil. Utilisez-le pour prioriser vos tests A/B.
-
----
-
-## Stratégie volume
-
-| Objectif | Recommandation |
+| Famille | Modes |
 |---|---|
-| Test rapide | 1 angle × 1 format × volume 1 |
-| A/B testing | 2 profils × 2 formats × volume 2 = 8 créatifs |
-| Campagne complète | 3–5 profils × 3 formats × volume 3 = 27–45 créatifs |
-| Agence multi-client | Script hebdomadaire via CLI ou SDK |
+| Styles | Studio, Lifestyle, UGC |
+| Layouts | Avant/Après, Feature Callout, Témoignage |
+| Formats publicitaires | Us vs Them, Anti-marketing, UGC statique, Témoignage, Offre limitée |
+| Transformations | Reproduire, Reformater, Éditer |
+
+Témoignage apparaît à la fois comme layout et comme format publicitaire, mais correspond au même identifiant `testimonial-overlay`.
+
+## Champs spécifiques
+
+- **Feature Callout** : jusqu’à cinq bénéfices.
+- **Témoignage** : texte, auteur et note.
+- **Avant/Après** : la référence représente l’avant et le produit/la seconde image l’après.
+- **Us vs Them, Anti-marketing, UGC statique** : headline/hook principal.
+- **Offre limitée** : texte d’offre.
+- **Reproduire** : référence obligatoire pour un résultat cohérent.
+- **Éditer** : modification ciblée d’une créative existante.
+
+## Exécution et reprise
+
+- Quatre images sont générées en parallèle.
+- La progression est conservée dans le navigateur.
+- Un lot reste récupérable pendant environ dix minutes.
+- Après un rechargement, un lot sans activité depuis environ une minute peut être repris automatiquement.
+
+La reprise repose sur `localStorage`. Elle n’est pas garantie après nettoyage du stockage du navigateur, changement de navigateur ou expiration du TTL.
+
+## Résultats
+
+Les créatives sont enregistrées dans la campagne et peuvent être téléchargées, regroupées, reformattées ou utilisées pour préparer une campagne Meta.
+
+L’analyse créative est déclenchée séparément et ne consomme pas le quota de génération.
+
+## Crédits
+
+Chaque cellule du produit cartésien correspond à une image et consomme un crédit. Vérifiez le total affiché avant de lancer le lot.

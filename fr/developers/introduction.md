@@ -1,102 +1,61 @@
-# CreatAds — Plateforme développeur
+# Plateforme développeur CreatAds
 
-> Générez des créatifs publicitaires IA par programme — depuis votre terminal, votre code ou votre agent IA.
+> Contrat vérifié dans le code le 10 juillet 2026.
 
-## Qu'est-ce que la plateforme développeur CreatAds ?
+CreatAds expose la génération de campagnes via une API REST fondée sur des actions et plusieurs clients construits au-dessus.
 
-CreatAds expose l'intégralité de son pipeline de génération via trois interfaces :
+| Interface | État actuel | Usage |
+|---|---|---|
+| API REST | Endpoint de production | Toute intégration HTTP |
+| SDK TypeScript | Package privé du monorepo | Intégrations Node.js internes |
+| CLI | Package du monorepo | Terminal et scripts |
+| MCP distant | `https://api.creatads.co/mcp` | Agents compatibles MCP |
+| MCP local | Package stdio du monorepo | Agents locaux utilisant la configuration CLI |
 
-| Interface | Idéal pour |
-|---|---|
-| **CLI** (`creatads-cli`) | Workflows terminal, scripts, CI/CD |
-| **TypeScript SDK** (`@creatads/sdk`) | Applications Node.js, intégrations personnalisées |
-| **MCP Server** (`creatads-mcp`) | Claude Code, agents IA, workflows LLM |
-
-Les trois partagent la même authentification (clé API) et la même API REST sous-jacente.
+Ces interfaces couvrent les espaces clients, campagnes, créatives, angles et Brand Kit. Inspiration, Explorer, la recherche Ads Library, Clone et la matrice complète de Mode Pro restent réservés à l'application.
 
 ## Prérequis
 
-- Un compte CreatAds sur [creatads.co](https://creatads.co)
-- Un **abonnement actif** (Fondateur, Croissance ou Agence) — la plateforme développeur est réservée aux abonnés premium
-- Une clé API — générez-en une dans **Paramètres → API**
+- un compte [creatads.co](https://creatads.co) ;
+- une clé créée dans **Paramètres > API** ;
+- un plan incluant l'accès développeur. L'offre publique le documente à partir de Fondateur.
 
-## Démarrage rapide (5 minutes)
+Note d'implémentation : le contrôle REST accepte actuellement tout produit Stripe payant actif, y compris Solo, alors que l'interface masque les clés API pour Solo. À l'inverse, la table de fonctionnalités de l'interface inclut Beta, mais le contrôle REST ne reconnaît pas le rôle bêta comme un abonnement payant. Cette politique produit/code reste à trancher.
 
-### 1. Installer le CLI
+Les crédits sont partagés avec l'application : une image générée consomme un crédit.
 
-```bash
-npm install -g creatads-cli
-```
+| Plan | Crédits image mensuels |
+|---|---:|
+| Starter | 3 |
+| Beta | 15 pendant l'accès bêta |
+| Solo | 30 |
+| Fondateur | 80 |
+| Croissance | 350 |
+| Agence | Illimité |
 
-### 2. S'authentifier
+## Démarrage rapide
 
 ```bash
 creatads auth login
-# Collez votre clé API quand on vous la demande (commence par cads_...)
-```
-
-### 3. Définir votre client par défaut
-
-```bash
 creatads clients list
 creatads clients use <client-id>
-```
-
-### 4. Générer votre première campagne
-
-```bash
-# Générer des profils d'audience depuis votre description de marque
 creatads angles generate \
-  --summary "French e-commerce brand selling eco-friendly home products to urban millennials" \
+  --summary "Marque de soins premium pour femmes urbaines de 25 à 40 ans" \
   --language fr
-
-# Créer une campagne
 creatads campaigns create \
-  --name "Summer Sale 2026" \
+  --name "Promotion été" \
   --cta "Découvrir" \
-  --offer "-20% ce weekend" \
+  --offer "-20 % ce week-end" \
   --aspect-ratio "1:1,9:16" \
-  --volume 6
-
-# Générer les créatifs (attend ~3 min, affiche un spinner)
+  --volume 4
 creatads campaigns generate <campaign-id>
 ```
 
-## Architecture
+## Documentation
 
-```
-Votre code / agent
-       │
-       ▼
-┌─────────────────┐
-│  REST API        │  POST https://bgpaitczhnfsqkukkwqi.supabase.co/functions/v1/api
-│  X-Api-Key auth  │
-└────────┬────────┘
-         │
-    ┌────┴────────────────────┐
-    │                         │
-    ▼                         ▼
-Supabase Edge Functions   imgproc Bun Service
-(auth, DB, billing)       api.creatads.co
-                          (Génération IA : fal.ai, OpenRouter)
-```
-
-## Sections
-
-- [Authentification](./authentication.md) — Clés API, sécurité
-- [Référence CLI](./cli.md) — Toutes les commandes avec exemples
-- [TypeScript SDK](./sdk.md) — Référence `@creatads/sdk`
-- [MCP Server](./mcp.md) — Intégration Claude Code & agents IA
-- [Workflows](./workflows.md) — Exemples concrets
-
-## Limites de débit & quotas
-
-Les quotas de génération sont partagés avec l'application web — la même limite mensuelle s'applique quelle que soit la façon dont vous générez.
-
-| Plan | Générations/mois |
-|---|---|
-| Fondateur | 60 |
-| Croissance | 250 |
-| Agence | Illimité |
-
-Les requêtes API (list, create, etc.) ne sont pas comptées dans votre quota — seuls les appels de génération le sont.
+- [Authentification](./authentication.md)
+- [API REST](./api.md)
+- [CLI](./cli.md)
+- [SDK TypeScript](./sdk.md)
+- [MCP](./mcp.md)
+- [Workflows et limites](./workflows.md)

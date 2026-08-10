@@ -18,7 +18,7 @@
   "topbarLinks": [
     {
       "name": "Ouvrir l'app",
-      "url": "https://creatads.app"
+      "url": "https://creatads.co"
     }
   ],
   "tabs": [
@@ -33,6 +33,8 @@
         "fr/users/demarrage",
         "fr/users/studio-ia",
         "fr/users/campagnes",
+        "fr/users/organisation-diffusion",
+        "fr/users/inspiration",
         "fr/users/angles",
         "fr/users/brand-kit",
         "fr/users/credits"
@@ -43,6 +45,7 @@
       "pages": [
         "fr/developers/introduction",
         "fr/developers/authentication",
+        "fr/developers/api",
         "fr/developers/cli",
         "fr/developers/sdk",
         "fr/developers/mcp",
@@ -56,6 +59,8 @@
         "en/users/getting-started",
         "en/users/studio",
         "en/users/campaigns",
+        "en/users/production-and-publishing",
+        "en/users/inspiration",
         "en/users/angles",
         "en/users/brand-kit",
         "en/users/credits"
@@ -66,6 +71,7 @@
       "pages": [
         "en/developers/introduction",
         "en/developers/authentication",
+        "en/developers/api",
         "en/developers/cli",
         "en/developers/sdk",
         "en/developers/mcp",
@@ -74,6 +80,6 @@
     }
   ],
   "footerSocials": {
-    "website": "https://creatads.app"
+    "website": "https://creatads.co"
   }
 }

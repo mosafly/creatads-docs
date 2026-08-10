@@ -2,65 +2,59 @@
 
 ## 1. Créer un compte
 
-Rendez-vous sur [creatads.app](https://creatads.app) et cliquez sur **Commencer gratuitement**.
+Rendez-vous sur [creatads.co](https://creatads.co) et cliquez sur **Commencer gratuitement**.
 
-Le plan gratuit inclut 2 générations pour tester la plateforme. Aucune carte bancaire requise.
+Le plan Starter inclut 3 générations. Aucune carte bancaire n’est requise.
 
----
+## 2. Terminer l’onboarding
 
-## 2. Créer votre premier espace client
+L’onboarding suit le flux suivant :
 
-Lors de votre première connexion, l'assistant d'onboarding vous guide pour créer un **espace client** — c'est le workspace isolé pour une marque ou un annonceur.
+1. questionnaire sur votre activité ;
+2. URL de votre site ;
+3. analyse du nom, de la description, du logo, des couleurs et des images produit ;
+4. aperçu modifiable du Brand Kit ;
+5. aperçu des publicités de votre niche et de concurrents détectés ;
+6. choix entre génération rapide et configuration de la marque.
 
-**Nom de l'espace** : utilisez le nom de la marque (ex. "Maison Léon", "Nike France").
+Si le site ne peut pas être analysé, CreatAds propose une configuration manuelle. Les sites protégés contre le scraping, les logos SVG ou les métadonnées incomplètes peuvent limiter l’extraction automatique.
 
-Vous pouvez créer autant d'espaces que nécessaire. Chaque espace a ses propres campagnes, profils et brand kit.
+## 3. Comprendre les espaces clients
 
-> Pour les agences : créez un espace par client. Basculez entre les espaces via le sélecteur en haut de la sidebar.
+Un espace client isole une marque : Brand Kit, angles, médias, campagnes et créatives.
 
----
+- Starter et Solo sont présentés comme des plans à espace unique dans l’interface tarifaire.
+- Les plans supérieurs sont destinés aux workflows multi-marques.
+- Vérifiez toujours l’espace actif avant d’importer ou de générer.
 
-## 3. L'interface
+## 4. Choisir le bon mode
 
-```
-┌─────────────────┬────────────────────────────────────┐
-│   Sidebar       │   Zone principale                  │
-│                 │                                    │
-│  [Logo]         │                                    │
-│  [Espace client]│   Contenu de la page active        │
-│                 │                                    │
-│  — Création —   │                                    │
-│  Mode Facile      │                                    │
-│  Campagnes      │                                    │
-│  Librairie      │                                    │
-│  Templates      │                                    │
-│                 │                                    │
-│  — Audiences —  │                                    │
-│  Brand Setup    │                                    │
-│  Profils        │                                    │
-│                 │                                    │
-│  — Workspace —  │                                    │
-│  Analyser       │                                    │
-│  Calendrier     │                                    │
-│                 │                                    │
-│  Paramètres     │                                    │
-│  [Crédits]      │                                    │
-└─────────────────┴────────────────────────────────────┘
-```
+### Mode Facile
 
-**Création** — générer et gérer vos visuels  
-**Audiences** — configurer les profils et la marque  
-**Workspace** — analyser vos créatifs, voir le calendrier  
+Utilisez `/generate` pour :
 
----
+- produire 1 à 3 variantes ;
+- appliquer un preset de scène ;
+- tester un format publicitaire ;
+- cloner rapidement une inspiration.
 
-## 4. Premier flux recommandé
+### Mode Pro
 
-Pour de meilleurs résultats, suivez cet ordre :
+Utilisez `/campaigns` pour :
 
-1. [Brand Kit](./brand-kit.md) — renseignez les couleurs et la description de votre marque
-2. [Angles créatifs](./angles.md) — générez 10 personas IA depuis votre description
-3. [Campagne](./campagnes.md) — créez une campagne en sélectionnant vos profils
-4. Téléchargez ou publiez vos visuels
+- sélectionner plusieurs ratios, modes et angles ;
+- générer un lot cartésien ;
+- suivre et reprendre la progression ;
+- préparer l’export et la publication Meta.
 
-Vous pouvez aussi aller directement au [Mode Facile](./studio-ia.md) pour un visuel rapide sans campagne.
+Mode Pro est accessible à partir du plan Solo et pendant un accès bêta actif.
+
+## 5. Premier workflow recommandé
+
+1. Vérifiez le [Brand Kit](./brand-kit.md).
+2. Générez dix [angles créatifs](./angles.md).
+3. Sélectionnez une référence dans [Inspiration](./inspiration.md).
+4. Lancez 1 à 3 variantes dans [Mode Facile](./studio-ia.md).
+5. Passez dans [Mode Pro](./campagnes.md) lorsque l’angle et le format sont validés.
+
+Chaque image générée consomme un crédit.

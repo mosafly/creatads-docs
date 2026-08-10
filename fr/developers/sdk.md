@@ -1,220 +1,50 @@
-# TypeScript SDK
+# SDK TypeScript
 
-## Installation
-
-```bash
-npm install @creatads/sdk
-```
-
-> Note : actuellement un package local (`services/sdk/`). Sera publié sur npm.
-
-## Configuration
+`@creatads/sdk` 1.0.0 est actuellement un package privé du monorepo dans `services/sdk`, pas une publication npm publique documentée.
 
 ```typescript
 import { CreatadsClient } from "@creatads/sdk";
-
-const client = new CreatadsClient(
-  process.env.CREATADS_API_KEY!,
-  // optionnel : URL de base personnalisée (par défaut : production)
-);
+const creatads = new CreatadsClient(process.env.CREATADS_API_KEY!);
 ```
 
----
-
-## Clients
+## Méthodes
 
 ```typescript
-// Lister tous les clients
-const clients = await client.listClients();
-// [{ id, name, user_id, created_at, onboarding_completed }]
-
-// Créer un client
-const newClient = await client.createClient("Nike France");
-// { id, name, user_id, created_at }
-```
-
----
-
-## Profils
-
-```typescript
-// Lister les profils d'un client
-const profiles = await client.listAngles(clientId);
-// [{ id, client_id, name, hook, awareness_level, visual_style, copy_direction, created_at }]
-
-// Obtenir un angle unique
-const profile = await client.getAngle(profileId);
-
-// Générer 10 profils IA depuis une description de marque
-const generated = await client.generateAngles(
-  clientId,
-  "French eco-friendly skincare brand targeting urban women 25-40",
-  "fr" // langue : "fr" | "en"
-);
-// Retourne Angle[] — déjà sauvegardés dans le compte
-```
-
----
-
-## Campagnes
-
-```typescript
-// Lister les campagnes
-const campaigns = await client.listCampaigns(clientId);
-
-// Créer une campagne
-const campaign = await client.createCampaign({
+await creatads.listClients();
+await creatads.createClient("Maison Leon");
+await creatads.listCampaigns(clientId);
+await creatads.createCampaign({
   client_id: clientId,
-  name: "Summer Sale",
-  cta_text: "Découvrir",
-  offer_text: "-20% ce weekend",
-  aspect_ratio: "1:1,9:16",       // séparé par virgules
-  volume: 6,
-  selected_angle_ids: [profileId1, profileId2],
-  landing_url: "https://example.com",
+  name: "Promotion été",
+  aspect_ratio: "1:1,9:16",
+  volume: 4,
+  selected_angle_ids: [angleId],
+  reference_image_url: "https://example.com/reference.jpg",
+  product_image_url: "https://example.com/produit.png",
 });
-
-// Déclencher la génération (fire-and-forget)
-const job = await client.generateCreatives(campaign.id);
-// { job_id, campaign_id, status: "pending" }
+await creatads.generateCreatives(campaignId);
+await creatads.listCreatives(campaignId);
+await creatads.prepareCampaign(campaignId);
+await creatads.listAngles(clientId);
+await creatads.getAngle(angleId);
+await creatads.generateAngles(clientId, researchSummary, "fr");
+await creatads.getBrandKit(clientId);
 ```
 
----
+La gestion des clés exige un JWT Supabase : `listApiKeys(jwt)`, `createApiKey(jwt, name)` et `revokeApiKey(jwt, keyId)`.
 
-## Créatifs
-
-```typescript
-// Lister les créatifs d'une campagne
-const creatives = await client.listCreatives(campaignId);
-// [{ id, campaign_id, image_url, aspect_ratio, status, created_at }]
-```
-
----
-
-## Attendre la fin de la génération
+## Suivi de génération
 
 ```typescript
 import { pollUntilDone } from "@creatads/sdk";
 
-// Lancer + attendre les résultats
-const job = await client.generateCreatives(campaign.id);
-
-const creatives = await pollUntilDone(client, campaign.id, {
-  timeoutMs: 180_000,          // timeout 3 min (défaut)
-  intervalMs: 3_000,           // vérifier toutes les 3s (défaut)
-  onProgress: (count) => {
-    console.log(`${count} créatifs prêts...`);
-  },
-});
-
-console.log(creatives.map((c) => c.image_url));
-```
-
-**Comportement :**
-- Interroge `listCreatives` toutes les `intervalMs`
-- Se résout quand au moins 1 créatif est prêt et que le nombre se stabilise
-- Rejette avec `PollTimeoutError` si `timeoutMs` est dépassé
-
----
-
-## Brand Kit
-
-```typescript
-const kit = await client.getBrandKit(clientId);
-// { brand_name, brand_description, color_primary, color_secondary, color_accent }
-// Retourne null si aucun brand kit configuré
-```
-
----
-
-## Gestion des erreurs
-
-```typescript
-import { CreatadsError } from "@creatads/sdk";
-
-try {
-  await client.generateCreatives(campaignId);
-} catch (e) {
-  if (e instanceof CreatadsError) {
-    console.error(e.code);        // "premium_required" | "invalid_api_key" | "not_found" | ...
-    console.error(e.message);     // Message lisible par un humain
-    console.error(e.statusCode);  // Code de statut HTTP
-  }
-}
-```
-
-Codes d'erreur courants :
-
-| Code | Signification |
-|---|---|
-| `invalid_api_key` | Clé invalide ou révoquée |
-| `premium_required` | Abonnement actif requis |
-| `forbidden` | La ressource appartient à un autre utilisateur |
-| `not_found` | La ressource n'existe pas |
-| `missing_param` | Paramètre requis manquant |
-
----
-
-## Types
-
-```typescript
-interface Client {
-  id: string;
-  name: string;
-  user_id: string;
-  created_at: string;
-  onboarding_completed?: boolean;
-}
-
-interface Angle {
-  id: string;
-  client_id: string;
-  name: string;
-  hook: string;
-  awareness_level: "unaware" | "problem_aware" | "solution_aware" | "product_aware" | "most_aware";
-  visual_style: "ugc" | "studio" | "lifestyle" | "text_heavy" | "before_after" | "demo";
-  copy_direction: string;
-  created_at: string;
-}
-
-interface Campaign {
-  id: string;
-  client_id: string;
-  name: string;
-  status: string;
-  cta_text: string;
-  offer_text: string;
-  aspect_ratio: string;
-  volume: number;
-  selected_angle_ids: string[];
-  reference_image_url: string | null;
-  product_image_url: string | null;
-  created_at: string;
-}
-
-interface Creative {
-  id: string;
-  campaign_id: string;
-  image_url: string;
-  aspect_ratio: string | null;
-  status: string;
-  created_at: string;
-}
-```
-
-## Helpers de configuration
-
-```typescript
-import { loadConfig, saveConfig, DEFAULT_BASE_URL } from "@creatads/sdk";
-
-// Lire ~/.creatads/config.json
-const config = loadConfig();
-// { api_key, base_url, default_client_id? }
-
-// Écrire la config (chmod 600)
-saveConfig({
-  api_key: "cads_...",
-  base_url: DEFAULT_BASE_URL,
-  default_client_id: "89b18b5f-...",
+await creatads.generateCreatives(campaignId);
+const disponibles = await pollUntilDone(creatads, campaignId, {
+  timeoutMs: 180_000,
+  intervalMs: 3_000,
 });
 ```
+
+`pollUntilDone` retourne dès que `listCreatives` contient au moins un élément. Il n'attend pas la stabilisation ou le nombre final prévu. Pour un lot, continuez à interroger jusqu'au nombre attendu.
+
+Les erreurs lèvent `CreatadsError` avec `code`, `message` et `statusCode`.

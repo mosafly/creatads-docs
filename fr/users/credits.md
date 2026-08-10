@@ -1,65 +1,54 @@
-# Crédits & abonnement
-
----
+# Crédits et abonnement
 
 ## Plans
 
-| Plan | Crédits / mois | Prix | Pour qui |
-|---|---|---|---|
-| **Starter** | 2 générations | Gratuit | Découverte |
-| **Fondateur** | 60 générations | 49 €/mois | Indépendants, petites marques |
-| **Croissance** | 250 générations | 149 €/mois | Agences, équipes |
-| **Agence** | Illimité | 299 €/mois | Volumes élevés, production intensive |
+| Plan | Prix mensuel | Générations | Accès principal |
+|---|---:|---:|---|
+| Starter | 0 € | 3 | Mode Facile, teaser Inspiration |
+| Beta Tester | 0 € | 15 | Accès temporaire aux fonctions premium |
+| Solo | 19 € | 30 | Mode Facile, Mode Pro, Brand Kit, Ads Library |
+| Fondateur | 49 € | 80 | Tout Solo + API, MCP/CLI et Meta Ads |
+| Croissance | 149 € | 350 | Volumes élevés et espaces clients illimités |
+| Agence | 299 € | illimité | Production à fort volume |
 
----
+Les labels et quotas proviennent de `src/lib/plans.ts` et de `supabase/functions/_shared/plan-quotas.ts`.
 
-## Comment fonctionnent les crédits
+## Consommation
 
-**1 crédit = 1 génération d'image.**
+**1 image générée = 1 crédit.**
 
-Que vous passiez par le Mode Facile ou une campagne, chaque image générée consomme 1 crédit.
+- Mode Facile : une variante consomme un crédit.
+- Presets : un crédit par preset généré.
+- Mode Pro : un crédit par cellule du produit cartésien.
+- API et MCP : un crédit par image générée.
+- Analyse créative, lecture, création de campagne et génération d’angles : aucun crédit image.
 
-Exemple : une campagne de volume 12 = 12 crédits.
+L’usage est compté par mois calendaire UTC. Il ne s’agit pas de la date anniversaire de la souscription.
 
-Les crédits se renouvellent automatiquement à chaque début de cycle de facturation mensuel. Ils ne sont pas reportés d'un mois à l'autre.
+Des crédits top-up peuvent être attribués par l’administration. Ils s’ajoutent au quota mensuel et persistent jusqu’à leur consommation.
 
----
+## Quotas Inspiration
 
-## Consulter votre solde
+Les recherches Ads Library utilisent un quota séparé :
 
-Votre solde est affiché en bas de la sidebar dans le bloc **Crédits** :
+| Plan | Recherches manuelles/mois |
+|---|---:|
+| Starter | 0 |
+| Beta Tester | 15 |
+| Solo | 20 |
+| Fondateur | 75 |
+| Croissance | 250 |
+| Agence | 1000 |
 
-```
-Crédits                          Fondateur
-████████░░  8 / 60       33% restant
-```
+Explorer, les résultats servis depuis le cache et les aperçus concurrents de l’onboarding ne consomment pas ce quota manuel.
 
-Une alerte apparaît (point rouge clignotant) quand vous atteignez 80% de consommation.
+## Accès par plan
 
----
+- Starter voit un rail Inspiration limité à neuf cartes mais pas la page Ads Library complète.
+- Mode Pro, Brand Kit et Ads Library complète commencent à Solo.
+- La création de clés API, le lien MCP/CLI et Meta Ads sont exposés à partir de Fondateur dans l’offre payante normale.
+- L’accès Beta est temporaire et peut différer des contrôles serveur de l’API développeur.
 
-## Upgrader
+## Gérer l’abonnement
 
-Cliquez sur **Passer à Fondateur →** en bas de la sidebar, ou allez dans **Paramètres → Abonnement**.
-
-Le changement de plan est effectif immédiatement. Les crédits du nouveau plan sont ajoutés au cycle en cours.
-
----
-
-## Gérer l'abonnement
-
-Dans **Paramètres → Abonnement**, vous pouvez :
-- Voir votre plan actuel et la date de renouvellement
-- Changer de plan (upgrade ou downgrade)
-- Accéder à vos factures
-- Annuler l'abonnement
-
----
-
-## Plan gratuit — limites
-
-Le plan Starter (gratuit) est limité à 2 générations. Il n'inclut pas :
-- Brand Setup et génération de profils d'audience
-- Meta Ads (publication directe)
-
-Ces fonctionnalités nécessitent un abonnement actif (Fondateur ou supérieur).
+Dans **Paramètres → Abonnement**, vous pouvez consulter l’usage, changer de plan, ouvrir le Customer Portal Stripe, télécharger des factures ou annuler.

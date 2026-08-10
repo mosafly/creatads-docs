@@ -1,55 +1,15 @@
 # Brand Kit
 
-The Brand Kit centralizes a brand's visual identity. When active, it is applied automatically to every creative generation.
+The Brand Kit stores one workspace's identity and business context: name, description, colors, fonts, light/dark logos, research summary, niche, market, Explorer category and detected competitors.
 
----
+## Website analysis
 
-## What the Brand Kit contains
+During onboarding or reanalysis, CreatAds can read website metadata, detect a logo, extract colors, rehost product images, infer niche/market/category/competitors and generate angles.
 
-| Element | Description |
-|---|---|
-| **Brand name** | Displayed on creatives and in AI copy |
-| **Description** | Short context to guide tone and style |
-| **Primary color** | The brand's dominant color (default: black) |
-| **Secondary color** | Accent color (default: purple) |
-| **Accent color** | Details and highlights (default: lime green) |
-| **Primary font** | Headline typography (default: Geist) |
-| **Secondary font** | Body typography (default: Inter) |
-| **Logo** | Light and dark versions (URL or upload) |
+Anti-bot or anti-hotlink protection can block retrieval. SVG logo colors and missing metadata can also produce incomplete defaults. Review all extracted data before saving.
 
----
+## Manual setup
 
-## Configure your Brand Kit
+At `/brand-setup`, edit every field, upload logos and import a research document. Document import fills the research summary; it does not automatically replace every Brand Kit property.
 
-1. Go to **Brand Setup** (sidebar, Audiences section)
-2. Enter the brand name and description
-3. Define your colors — use hex codes (#RRGGBB)
-4. Upload your logo in light and dark versions if available
-
-**Tip:** the more precise the description, the more consistent the tone of generated text will be with your brand.
-
----
-
-## Activate the Brand Kit on a generation
-
-### Easy Mode
-If a Brand Kit is configured, it is active automatically. You see it displayed below the form (`Acme · active`).
-
-### Campaigns
-In Step 2 of the wizard, enable the **Use Brand Kit** toggle.
-
----
-
-## Import from a document
-
-You can automatically extract brand information from:
-- A web page URL (brand site, product page)
-- A PDF (brief, brand guidelines, deck)
-
-Click **Import from a document** in Brand Setup and paste the URL or upload the file. The AI extracts the name, description, colors, and positioning in seconds.
-
----
-
-## Client workspace and Brand Kit
-
-Each client workspace has its own Brand Kit. If you manage multiple brands, switch workspaces before editing the Brand Kit to avoid overwriting another client's settings.
+Easy Mode and Pro Mode can apply the Brand Kit. During Clone, the source brand is excluded and the active user's brand is reintroduced.

@@ -1,220 +1,72 @@
 # TypeScript SDK
 
-## Installation
-
-```bash
-npm install @creatads/sdk
-```
-
-> Note: currently a local package (`services/sdk/`). Will be published to npm.
-
-## Setup
+`@creatads/sdk` version 1.0.0 is currently a private monorepo package in `services/sdk`; it is not documented as a public npm release.
 
 ```typescript
 import { CreatadsClient } from "@creatads/sdk";
 
-const client = new CreatadsClient(
-  process.env.CREATADS_API_KEY!,
-  // optional: custom base URL (defaults to production)
-);
+const creatads = new CreatadsClient(process.env.CREATADS_API_KEY!);
 ```
 
----
+The optional second constructor argument overrides the default REST endpoint.
 
-## Clients
-
-```typescript
-// List all clients
-const clients = await client.listClients();
-// [{ id, name, user_id, created_at, onboarding_completed }]
-
-// Create a client
-const newClient = await client.createClient("Nike France");
-// { id, name, user_id, created_at }
-```
-
----
-
-## Profiles
+## Methods
 
 ```typescript
-// List profiles for a client
-const profiles = await client.listAngles(clientId);
-// [{ id, client_id, name, hook, awareness_level, visual_style, copy_direction, created_at }]
+await creatads.listClients();
+await creatads.createClient("Maison Leon");
 
-// Get a single profile
-const profile = await client.getAngle(profileId);
-
-// Generate 10 AI profiles from a brand description
-const generated = await client.generateAngles(
-  clientId,
-  "French eco-friendly skincare brand targeting urban women 25-40",
-  "fr" // language: "fr" | "en"
-);
-// Returns Angle[] — already saved to the account
-```
-
----
-
-## Campaigns
-
-```typescript
-// List campaigns
-const campaigns = await client.listCampaigns(clientId);
-
-// Create a campaign
-const campaign = await client.createCampaign({
+await creatads.listCampaigns(clientId);
+await creatads.createCampaign({
   client_id: clientId,
   name: "Summer Sale",
-  cta_text: "Découvrir",
-  offer_text: "-20% ce weekend",
-  aspect_ratio: "1:1,9:16",       // comma-separated
-  volume: 6,
-  selected_angle_ids: [profileId1, profileId2],
+  cta_text: "Shop now",
+  offer_text: "20% off",
+  aspect_ratio: "1:1,9:16",
+  volume: 4,
+  selected_angle_ids: [angleId],
+  platform_target: ["facebook", "instagram"],
   landing_url: "https://example.com",
+  reference_image_url: "https://example.com/reference.jpg",
+  product_image_url: "https://example.com/product.png",
 });
 
-// Trigger generation (fire-and-forget)
-const job = await client.generateCreatives(campaign.id);
-// { job_id, campaign_id, status: "pending" }
+await creatads.listCreatives(campaignId);
+await creatads.generateCreatives(campaignId);
+await creatads.prepareCampaign(campaignId);
+
+await creatads.listAngles(clientId);
+await creatads.getAngle(angleId);
+await creatads.generateAngles(clientId, researchSummary, "en");
+
+await creatads.getBrandKit(clientId);
 ```
 
----
-
-## Creatives
+API-key management requires a Supabase session JWT:
 
 ```typescript
-// List creatives for a campaign
-const creatives = await client.listCreatives(campaignId);
-// [{ id, campaign_id, image_url, aspect_ratio, status, created_at }]
+await creatads.listApiKeys(jwt);
+await creatads.createApiKey(jwt, "Production");
+await creatads.revokeApiKey(jwt, keyId);
 ```
 
----
-
-## Poll until done
+## Generation and polling
 
 ```typescript
-import { pollUntilDone } from "@creatads/sdk";
+import { CreatadsClient, pollUntilDone } from "@creatads/sdk";
 
-// Launch + wait for results
-const job = await client.generateCreatives(campaign.id);
+const creatads = new CreatadsClient(process.env.CREATADS_API_KEY!);
+const job = await creatads.generateCreatives(campaignId);
 
-const creatives = await pollUntilDone(client, campaign.id, {
-  timeoutMs: 180_000,          // 3 min timeout (default)
-  intervalMs: 3_000,           // poll every 3s (default)
-  onProgress: (count) => {
-    console.log(`${count} creatives ready...`);
-  },
-});
-
-console.log(creatives.map((c) => c.image_url));
-```
-
-**Behaviour:**
-- Polls `listCreatives` every `intervalMs`
-- Resolves when at least 1 creative is ready and the count stabilizes
-- Rejects with `PollTimeoutError` if `timeoutMs` is exceeded
-
----
-
-## Brand Kit
-
-```typescript
-const kit = await client.getBrandKit(clientId);
-// { brand_name, brand_description, color_primary, color_secondary, color_accent }
-// Returns null if no brand kit configured
-```
-
----
-
-## Error handling
-
-```typescript
-import { CreatadsError } from "@creatads/sdk";
-
-try {
-  await client.generateCreatives(campaignId);
-} catch (e) {
-  if (e instanceof CreatadsError) {
-    console.error(e.code);        // "premium_required" | "invalid_api_key" | "not_found" | ...
-    console.error(e.message);     // Human-readable message
-    console.error(e.statusCode);  // HTTP status code
-  }
-}
-```
-
-Common error codes:
-
-| Code | Meaning |
-|---|---|
-| `invalid_api_key` | Key invalid or revoked |
-| `premium_required` | Active subscription required |
-| `forbidden` | Resource belongs to another user |
-| `not_found` | Resource doesn't exist |
-| `missing_param` | Required parameter missing |
-
----
-
-## Types
-
-```typescript
-interface Client {
-  id: string;
-  name: string;
-  user_id: string;
-  created_at: string;
-  onboarding_completed?: boolean;
-}
-
-interface Angle {
-  id: string;
-  client_id: string;
-  name: string;
-  hook: string;
-  awareness_level: "unaware" | "problem_aware" | "solution_aware" | "product_aware" | "most_aware";
-  visual_style: "ugc" | "studio" | "lifestyle" | "text_heavy" | "before_after" | "demo";
-  copy_direction: string;
-  created_at: string;
-}
-
-interface Campaign {
-  id: string;
-  client_id: string;
-  name: string;
-  status: string;
-  cta_text: string;
-  offer_text: string;
-  aspect_ratio: string;
-  volume: number;
-  selected_angle_ids: string[];
-  reference_image_url: string | null;
-  product_image_url: string | null;
-  created_at: string;
-}
-
-interface Creative {
-  id: string;
-  campaign_id: string;
-  image_url: string;
-  aspect_ratio: string | null;
-  status: string;
-  created_at: string;
-}
-```
-
-## Config helpers
-
-```typescript
-import { loadConfig, saveConfig, DEFAULT_BASE_URL } from "@creatads/sdk";
-
-// Read ~/.creatads/config.json
-const config = loadConfig();
-// { api_key, base_url, default_client_id? }
-
-// Write config (chmod 600)
-saveConfig({
-  api_key: "cads_...",
-  base_url: DEFAULT_BASE_URL,
-  default_client_id: "89b18b5f-...",
+const available = await pollUntilDone(creatads, campaignId, {
+  timeoutMs: 180_000,
+  intervalMs: 3_000,
+  onProgress: (count) => console.log(`${count} image(s) available`),
 });
 ```
+
+Current `pollUntilDone` behavior is deliberately simple: it returns as soon as `listCreatives` contains at least one item. It does not wait for a stable or expected final count. For multi-image batches, continue polling until your expected count is reached.
+
+## Errors
+
+Failed requests throw `CreatadsError` with `code`, `message` and `statusCode`. Common codes are `invalid_api_key`, `premium_required`, `forbidden`, `quota_exceeded`, `missing_param` and `not_found`.

@@ -1,68 +1,41 @@
 # Easy Mode
 
-Generate a unique ad creative in under 2 minutes, without a full brief or campaign.
+Easy Mode (`/generate`) creates one to three creatives without configuring a complete batch.
 
----
+## Inputs
 
-## When to use Easy Mode?
+- **Reference image** for mood, composition or reproduction/reformatting.
+- **Product image** to preserve faithfully in the output.
+- **Brand Kit** for identity and business context.
+- **Creative angle** for the hook, awareness level, visual style and copy direction.
+- **Ratio and creative mode** for the final format.
 
-- Quickly test an idea
-- Generate a one-shot creative for a post or ad
-- Iterate on an existing image (reformat, vary)
+At least one image or an edited prompt is required.
 
-To generate multiple creatives with profile-based targeting → use [Campaigns](./campaigns.md).
+## Modes
 
----
+Styles and transformations: Studio, Lifestyle, UGC, Reproduce and Reformat.
 
-## Generate a creative
+The five ad formats are:
 
-### 1. Choose your images (optional)
+1. Us vs Them
+2. Anti-marketing
+3. Static UGC
+4. Testimonial
+5. Limited Offer
 
-**Reference image** — an existing ad, a brand photo, a mood. The AI draws on it for style and composition.
+The supported ratios are `1:1`, `4:5`, `9:16` and `1.91:1`.
 
-**Product image** — the product to feature. Upload a PNG or JPG, or choose from your library.
+## Volume and presets
 
-> If you have an active brand kit, its colors and visual identity are applied automatically.
+Without a preset, choose 1, 2 or 3 variants. With presets, one image is generated per selected preset; examples include podium, flat lay, face application, unboxing, before/after split and five-star card.
 
-### 2. Describe the creative
+## Inspiration and Clone
 
-Write a short brief in the text field (500 characters max):
+The top rail contains Inspirations, My creatives, Favorites and Winners. Favorites and Winners are still marked as coming soon.
 
-```
-Parisian café atmosphere, golden light. Packshot of dark chocolate on a marble table.
-Text: "Free delivery from €35".
-```
-
-Use the AI suggestions (buttons below the field) to enrich your brief.
-
-### 3. Choose a format
-
-| Format | Dimensions | Use |
-|---|---|---|
-| Square `1:1` | 1080×1080 | Facebook & Instagram Feed |
-| Story `9:16` | 1080×1920 | Stories & Reels |
-| Landscape `1.91:1` | 1200×628 | Facebook Link ads |
-
-### 4. Generate
-
-Click **Generate**. Generation takes **30–90 seconds**.
-
-A progress counter displays the steps in real time.
-
----
-
-## Result
-
-Once the creative is ready:
-
-- **Download** — high-resolution PNG
-- **Publish to Meta** — direct submission via Meta Ads (Meta connection required)
-- **Iterate** — edit the brief and regenerate
-
----
+Cloning an inspiration rehosts it, uses it as a reference, switches to Reproduce and explicitly excludes the source brand. Easy Mode does not run the optional textual structure analysis.
 
 ## Credits
 
-Each generation uses **1 credit**. Your balance is shown at the bottom of the sidebar.
-
-→ See [Credits & Subscription](./credits.md)
+One generated image consumes one credit. Three variants consume three credits.

@@ -1,36 +1,32 @@
 # Guide utilisateur CreatAds
 
-Générez des visuels publicitaires Meta en quelques minutes grâce à l'IA.
+CreatAds génère des publicités Meta statiques à partir de vos images, de votre identité de marque, d’angles créatifs et de références publicitaires.
 
----
-
-## Sections
+## Guides
 
 | Guide | Contenu |
 |---|---|
-| [Démarrage rapide](./demarrage.md) | Créer un compte, premier espace client, interface |
-| [Mode Facile](./studio-ia.md) | Générer un visuel en one-shot |
-| [Campagnes](./campagnes.md) | Créer et gérer des séries de créatifs |
-| [Angles créatifs](./angles.md) | Cibler avec des personas IA |
-| [Brand Kit](./brand-kit.md) | Couleurs, logo, description de marque |
-| [Crédits & abonnement](./credits.md) | Plans, limites, renouvellement |
+| [Démarrage rapide](./demarrage.md) | Créer un compte et terminer l’onboarding |
+| [Mode Facile](./studio-ia.md) | Générer 1 à 3 variantes rapidement |
+| [Mode Pro](./campagnes.md) | Construire des lots multi-formats et multi-angles |
+| [Organisation, analyse et diffusion](./organisation-diffusion.md) | Bibliothèque, board, calendrier et Meta Ads |
+| [Inspiration, Explorer et Clone](./inspiration.md) | Trouver et réutiliser des structures publicitaires |
+| [Angles créatifs](./angles.md) | Diversifier hooks, niveaux de conscience et styles |
+| [Brand Kit](./brand-kit.md) | Identité, URL, logos, couleurs et recherche |
+| [Crédits et abonnement](./credits.md) | Plans, accès et quotas |
 
----
+## Workflow recommandé
 
-## En 3 minutes
+1. Analysez l’URL de votre marque pendant l’onboarding.
+2. Vérifiez le Brand Kit et les images importées.
+3. Générez ou éditez vos angles créatifs.
+4. Choisissez une inspiration ou partez de vos propres images.
+5. Utilisez Mode Facile pour un test rapide ou Mode Pro pour un lot.
+6. Téléchargez les résultats ou préparez leur publication Meta Ads.
 
-1. **Créer un espace** pour votre marque ou client
-2. **Générer des profils d'audience** depuis une description de marque
-3. **Lancer une campagne** — choisissez vos formats, volume, CTA
-4. **Télécharger ou publier** vos visuels directement sur Meta Ads
+## Deux notions à ne pas confondre
 
----
+- **Ratio d’image** : `1:1`, `4:5`, `9:16`, `16:9` ou `1.91:1` selon la surface.
+- **Format publicitaire** : Us vs Them, Anti-marketing, UGC statique, Témoignage ou Offre limitée.
 
-## Formats supportés
-
-| Format | Usage |
-|---|---|
-| `1:1` | Facebook Feed, Instagram Feed |
-| `4:5` | Instagram Feed portrait (meilleur engagement) |
-| `9:16` | Stories & Reels |
-| `1.91:1` | Facebook Landscape / Link ads |
+CreatAds produit actuellement des images statiques. La vidéo n’est pas prise en charge.

@@ -1,36 +1,29 @@
-# CreatAds User Guide
+# CreatAds user guide
 
-Generate Meta ad creatives in minutes with AI.
+CreatAds generates static Meta ad creatives from your images, Brand Kit, creative angles and ad references.
 
----
-
-## Sections
+## Guides
 
 | Guide | Content |
 |---|---|
-| [Getting Started](./getting-started.md) | Create an account, first client workspace, interface overview |
-| [Easy Mode](./studio.md) | Generate a one-shot creative |
-| [Campaigns](./campaigns.md) | Create and manage creative series |
-| [Creative Angles](./angles.md) | Target with AI personas |
-| [Brand Kit](./brand-kit.md) | Colors, logo, brand description |
-| [Credits & Subscription](./credits.md) | Plans, limits, renewal |
+| [Getting started](./getting-started.md) | Create an account and complete onboarding |
+| [Easy Mode](./studio.md) | Generate 1 to 3 variants quickly |
+| [Pro Mode](./campaigns.md) | Build multi-format, multi-angle batches |
+| [Production and publishing](./production-and-publishing.md) | Library, analysis, board, calendar and Meta Ads |
+| [Inspiration, Explorer and Clone](./inspiration.md) | Find and reuse ad structures |
+| [Creative angles](./angles.md) | Diversify hooks, awareness and visual styles |
+| [Brand Kit](./brand-kit.md) | Identity, website, logos, colors and research |
+| [Credits and plans](./credits.md) | Plans, access and quotas |
 
----
+## Recommended workflow
 
-## In 3 minutes
+1. Analyze your brand website during onboarding.
+2. Review the Brand Kit and imported product images.
+3. Generate or edit creative angles.
+4. Select an inspiration or provide your own images.
+5. Use Easy Mode for a quick test or Pro Mode for a batch.
+6. Download the results or prepare a Meta Ads campaign.
 
-1. **Create a workspace** for your brand or client
-2. **Generate audience profiles** from a brand description
-3. **Launch a campaign** — choose your formats, volume, CTA
-4. **Download or publish** your creatives directly to Meta Ads
+An **image ratio** (`1:1`, `4:5`, `9:16`, `16:9` or `1.91:1`) is different from an **ad format** (Us vs Them, Anti-marketing, Static UGC, Testimonial or Limited Offer).
 
----
-
-## Supported formats
-
-| Format | Use |
-|---|---|
-| `1:1` | Facebook Feed, Instagram Feed |
-| `4:5` | Instagram Feed portrait (best engagement) |
-| `9:16` | Stories & Reels |
-| `1.91:1` | Facebook Landscape / Link ads |
+CreatAds currently produces static images. Video generation is not supported.

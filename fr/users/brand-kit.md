@@ -1,55 +1,47 @@
 # Brand Kit
 
-Le Brand Kit centralise l'identité visuelle d'une marque. Activé, il est appliqué automatiquement à chaque génération de créatif.
+Le Brand Kit centralise le contexte et l’identité d’une marque pour un espace client.
 
----
+## Données enregistrées
 
-## Ce que contient le Brand Kit
+- nom et description ;
+- couleurs principale, secondaire et accent ;
+- polices principale et secondaire ;
+- logos clair et sombre ;
+- résumé de recherche ;
+- niche et mot-clé de niche ;
+- marché (`FR` ou `US` dans le workflow Ads Library actuel) ;
+- catégorie Explorer ;
+- concurrents détectés.
 
-| Élément | Description |
-|---|---|
-| **Nom de la marque** | Affiché sur les visuels et dans les copies IA |
-| **Description** | Contexte court pour orienter le ton et le style |
-| **Couleur principale** | Couleur dominante de la marque (défaut : noir) |
-| **Couleur secondaire** | Couleur d'accent (défaut : violet) |
-| **Couleur d'accentuation** | Détails et highlights (défaut : vert lime) |
-| **Police principale** | Typo headlines (défaut : Geist) |
-| **Police secondaire** | Typo body (défaut : Inter) |
-| **Logo** | Version claire et version sombre (URL ou upload) |
+## Analyse depuis une URL
 
----
+Pendant l’onboarding ou depuis l’action de réanalyse du Brand Kit, CreatAds peut :
 
-## Configurer votre Brand Kit
+1. lire les métadonnées du site ;
+2. détecter un logo ou une icône ;
+3. extraire une palette lorsque le format du logo le permet ;
+4. télécharger et ré-héberger des images produit ;
+5. inférer niche, marché, catégorie et concurrents ;
+6. générer ou régénérer les angles.
 
-1. Allez dans **Brand Setup** (sidebar, section Audiences)
-2. Renseignez le nom et la description de la marque
-3. Définissez vos couleurs — utilisez le code hex (#RRGGBB)
-4. Uploadez votre logo en version claire et sombre si disponible
+### Limitations
 
-**Conseil :** plus la description est précise, plus le ton des textes générés sera cohérent avec votre marque.
+- Les protections anti-bot ou anti-hotlink peuvent empêcher la récupération.
+- Les logos SVG ne peuvent pas toujours être analysés par la librairie de couleurs.
+- Les métadonnées absentes produisent des valeurs par défaut.
+- Vérifiez toujours le résultat avant de l’enregistrer.
 
----
+## Configuration manuelle
 
-## Activer le Brand Kit sur une génération
+Dans `/brand-setup`, vous pouvez corriger chaque champ, téléverser des logos et importer un document de recherche.
 
-### Mode Facile
-Si un Brand Kit est configuré, il est actif automatiquement. Vous le voyez affiché sous le formulaire (`Acme · actif`).
+L’import documentaire accepte les formats pris en charge par `parse-document` et remplit le résumé de recherche. Il ne remplace pas automatiquement toutes les propriétés du Brand Kit.
 
-### Campagnes
-Dans l'Étape 2 du wizard, activez le toggle **Utiliser le Brand Kit**.
+## Utilisation
 
----
+- Mode Facile et Mode Pro peuvent activer le Brand Kit.
+- Le logo final est appliqué de manière déterministe par le pipeline de composition lorsque les conditions du mode le permettent.
+- En Clone, la marque source est interdite et la marque utilisateur est réinjectée.
 
-## Importer depuis un document
-
-Vous pouvez extraire automatiquement les informations de marque depuis :
-- Une URL de page web (site de la marque, page produit)
-- Un PDF (brief, charte graphique, deck)
-
-Cliquez sur **Importer depuis un document** dans Brand Setup et collez l'URL ou uploadez le fichier. L'IA extrait le nom, la description, les couleurs et le positionnement en quelques secondes.
-
----
-
-## Espace client et Brand Kit
-
-Chaque espace client a son propre Brand Kit. Si vous gérez plusieurs marques, basculez d'espace avant de modifier le Brand Kit pour ne pas écraser celui d'un autre client.
+Chaque espace client possède son propre Brand Kit.

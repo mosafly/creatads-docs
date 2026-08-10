@@ -1,76 +1,50 @@
 # Authentification
 
+CreatAds utilise deux mécanismes distincts.
+
+| Identifiant | En-tête | Opérations |
+|---|---|---|
+| Clé API CreatAds | `X-Api-Key: cads_...` | Espaces, campagnes, créatives, angles et Brand Kit |
+| JWT de session Supabase | `Authorization: Bearer <jwt>` | Créer, lister ou révoquer les clés API |
+
 ## Clés API
 
-CreatAds utilise des clés API pour tous les accès développeur. Les clés :
-- Commencent par `cads_` suivi de 64 caractères hexadécimaux
-- Sont liées à votre compte utilisateur (pas à un espace client)
-- Nécessitent un abonnement premium actif pour fonctionner
-- Peuvent être révoquées à tout moment depuis le dashboard ou le CLI
+Une clé commence par `cads_`, suivi de 64 caractères hexadécimaux. Elle appartient au compte utilisateur et n'est affichée qu'une fois.
 
-### Générer une clé
-
-1. Allez dans **Paramètres → API** dans le dashboard CreatAds
-2. Cliquez sur **Nouvelle clé API**, donnez-lui un nom (ex. "Production", "Claude Code")
-3. Copiez la clé — **elle n'est affichée qu'une seule fois**
-
-Ou via le CLI (nécessite d'être connecté) :
-```bash
-creatads keys create --name "Mon intégration"
-```
-
-### Utiliser une clé
-
-Passez la clé dans l'en-tête `X-Api-Key` :
+Créez ou révoquez les clés dans **Paramètres > API**, puis stockez-les dans un gestionnaire de secrets ou une variable d'environnement :
 
 ```bash
-curl -X POST https://bgpaitczhnfsqkukkwqi.supabase.co/functions/v1/api \
-  -H "Content-Type: application/json" \
-  -H "X-Api-Key: cads_your_key_here" \
-  -d '{"action": "list_clients"}'
-```
-
-Le SDK et le CLI gèrent cela automatiquement une fois configurés.
-
-## Sécurité
-
-**Ne committez jamais votre clé API.** Utilisez des variables d'environnement :
-
-```bash
-# .env
 CREATADS_API_KEY=cads_...
 ```
 
-```typescript
-import { CreatadsClient } from "@creatads/sdk";
-const client = new CreatadsClient(process.env.CREATADS_API_KEY!);
-```
-
-**Faites tourner vos clés régulièrement.** Si une clé est compromise :
 ```bash
-creatads keys list          # trouver l'ID de la clé
-creatads keys revoke <id>   # révoquer immédiatement
-creatads keys create --name "Remplacement"
+curl -X POST "https://bgpaitczhnfsqkukkwqi.supabase.co/functions/v1/api" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: $CREATADS_API_KEY" \
+  -d '{"action":"list_clients"}'
 ```
 
-## Erreurs
+Ne commitez jamais une clé. Révoquez-la immédiatement si elle est exposée.
 
-| Statut HTTP | Code d'erreur | Signification |
-|---|---|---|
-| 401 | `invalid_api_key` | Clé introuvable, révoquée ou malformée |
-| 403 | `premium_required` | Aucun abonnement actif |
-| 403 | `forbidden` | La ressource n'appartient pas à votre compte |
-| 400 | `missing_param` | Paramètre requis non fourni |
-| 404 | `not_found` | La ressource n'existe pas |
-| 500 | — | Erreur serveur (réessayez) |
+## Gestion des clés via CLI ou SDK
 
-## Deux modes d'authentification
+Ces opérations exigent le JWT Supabase de la session courante, pas une clé CreatAds existante.
 
-La fonction edge `/api` supporte deux modes d'authentification :
+```bash
+creatads keys list --jwt <supabase-session-jwt>
+creatads keys create --name "Production" --jwt <supabase-session-jwt>
+creatads keys revoke <key-id> --jwt <supabase-session-jwt>
+```
 
-| En-tête | Actions | Cas d'usage |
-|---|---|---|
-| `X-Api-Key: cads_...` | Toutes les actions métier (generate, list, create) | Usage API normal |
-| `Authorization: Bearer <jwt>` | Gestion des clés uniquement (create/list/revoke) | Dashboard uniquement |
+Sans `--jwt`, le CLI le demande. Le tableau de bord reste le chemin le plus simple.
 
-La gestion des clés via `Authorization` nécessite un JWT Supabase valide (token de session de l'application web). C'est intentionnel — vous ne pouvez pas créer de nouvelles clés API en utilisant une clé API existante.
+## Erreurs courantes
+
+| HTTP | Code | Signification |
+|---:|---|---|
+| 401 | `invalid_api_key` | Clé absente, malformée, inconnue ou révoquée |
+| 403 | `premium_required` | Le compte n'a pas accès à l'API |
+| 403 | `forbidden` | La ressource n'appartient pas au compte |
+| 403 | `quota_exceeded` | Le lot dépasse les crédits restants |
+| 400 | `missing_param` | Champ obligatoire absent |
+| 404 | `not_found` | Ressource introuvable |
