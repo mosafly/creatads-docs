@@ -18,8 +18,8 @@ L’analyse ne consomme pas de crédit image. Ses scores sont heuristiques et ne
 
 ## Meta Ads
 
-`/campaigns/meta-ads` affiche uniquement les campagnes terminées. Chargez les créatives, préparez le texte/ciblage par IA, vérifiez headline, texte, description, CTA, offre, URL et budget, sélectionnez les images, choisissez stratégie et objectif, puis publiez. Les insights peuvent être lus après publication.
+`/campaigns/meta-ads` est la page **Analytics Meta**. Connectez un compte publicitaire, puis actualisez les données des sept derniers jours. Ouvrez une campagne pour voir ses annonces, leurs dépenses, impressions, clics, CTR, CPM et couverture. Une annonce peut être liée à une créa Creatads lorsque l'identifiant Meta est connu.
 
-La page peut également créer des audiences Meta sélectionnées. Elle exige les identifiants Meta configurés côté service et un plan autorisé : Beta, Fondateur, Croissance, Agence ou Admin dans la table de fonctionnalités actuelle.
+La page est strictement en lecture seule : elle ne crée ni ne modifie une campagne, audience, annonce, budget ou statut de diffusion. Elle exige les identifiants Meta configurés côté service et un plan autorisé : Beta, Fondateur, Croissance, Agence ou Admin dans la table de fonctionnalités actuelle.
 
-CreatAds ne garantit ni validation par Meta ni performance. Vérifiez le budget, les contenus, le ciblage et l’état final dans Meta Ads Manager.
+CreatAds ne garantit ni validation par Meta ni performance. Vérifiez toujours les données finales dans Meta Ads Manager.

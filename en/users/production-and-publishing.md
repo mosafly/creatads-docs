@@ -18,8 +18,8 @@ Analysis does not consume image credits. Scores are heuristics and do not predic
 
 ## Meta Ads
 
-`/campaigns/meta-ads` shows completed campaigns only. Load creatives, prepare copy and targeting with AI, review headline/body/description/CTA/offer/URL/budget, select images, choose a Meta strategy and objective, then publish. Available insights can be read after publishing.
+`/campaigns/meta-ads` is the **Meta Analytics** page. Connect an ad account, then refresh the last seven days of data. Open a campaign to see its ads, spend, impressions, clicks, CTR, CPM and reach. An ad can be linked to a Creatads creative when its Meta ID is known.
 
-The page can also create selected Meta audiences. It requires server-side Meta credentials and an eligible plan: Beta, Founder, Growth, Agency or Admin in the current UI feature table.
+The page is strictly read-only: it does not create or modify campaigns, audiences, ads, budgets or delivery statuses. It requires server-side Meta credentials and an eligible plan: Beta, Founder, Growth, Agency or Admin in the current UI feature table.
 
-CreatAds does not guarantee Meta approval or performance. Verify budgets, content, targeting and final status in Meta Ads Manager.
+CreatAds does not guarantee Meta approval or performance. Always verify final data in Meta Ads Manager.

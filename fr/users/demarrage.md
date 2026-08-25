@@ -45,7 +45,7 @@ Utilisez `/campaigns` pour :
 - sélectionner plusieurs ratios, modes et angles ;
 - générer un lot cartésien ;
 - suivre et reprendre la progression ;
-- préparer l’export et la publication Meta.
+- préparer l’export et consulter les performances Meta.
 
 Mode Pro est accessible à partir du plan Solo et pendant un accès bêta actif.
 

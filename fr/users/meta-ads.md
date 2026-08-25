@@ -1,22 +1,22 @@
 ---
-title: Publier sur Meta Ads
-description: Connecter un compte Meta à un espace Creatads et publier des créatives en pause.
+title: Analyser vos performances Meta
+description: Connecter un compte publicitaire Meta à un espace Creatads pour lire les performances de ses campagnes et annonces.
 ---
 
 ## Connecter votre espace
 
-Ouvrez **Meta Ads** dans Creatads, puis connectez votre compte Meta. La connexion est propre à l'espace client actif : elle ne donne pas accès aux comptes publicitaires des autres espaces.
+Ouvrez **Analytics Meta** dans Creatads, puis connectez votre compte Meta. La connexion est propre à l'espace client actif : elle ne donne pas accès aux comptes publicitaires des autres espaces.
 
-Après autorisation, choisissez le **compte publicitaire** et la **Page Facebook** utilisés pour vos publicités. Vous pouvez déconnecter l'espace à tout moment ; Creatads supprime alors le jeton d'accès enregistré pour cet espace.
+Après autorisation, choisissez le **compte publicitaire** à analyser. Aucune Page Facebook ni aucun Pixel ne sont requis. Vous pouvez déconnecter l'espace à tout moment ; Creatads supprime alors le jeton d'accès enregistré pour cet espace.
 
-## Préparer une publication
+## Lire les performances
 
-Depuis une campagne terminée, vérifiez les créatives sélectionnées, les textes, l'URL de destination, le CTA, le ciblage et le budget. Creatads utilise le compte et la Page affichés dans le bloc de connexion.
+Actualisez les performances pour afficher les campagnes du compte sur les sept derniers jours. Ouvrez une campagne pour consulter ses annonces et les métriques associées : dépenses, impressions, clics, CTR, CPM et couverture.
 
-Une publication crée la campagne, les ensembles de publicités et les publicités avec le statut **en pause**. Aucun budget n'est dépensé tant que vous ne les activez pas dans Meta Ads Manager.
+Lorsqu'une annonce correspond à une créa Creatads connue, elle est indiquée comme liée. Les autres annonces restent visibles comme annonces Meta non liées.
 
 ## Accès et limites
 
-Vous devez disposer des droits nécessaires sur le compte publicitaire et la Page. Meta peut refuser une publication ou demander une vérification supplémentaire. Creatads ne garantit ni l'approbation par Meta ni la performance : vérifiez toujours les paramètres et le statut final dans Meta Ads Manager.
+Cette première version est strictement en **lecture seule** : Creatads ne crée ni ne modifie de campagne, d'ensemble de publicités, d'annonce, de budget, d'audience ou de statut de diffusion. Vous devez disposer d'un droit de lecture sur le compte publicitaire sélectionné.
 
-Les métriques affichées après publication sont des données de lecture Meta. Elles servent au suivi ; un audit de performance par créative sera proposé ultérieurement.
+Meta peut demander une vérification supplémentaire. Creatads ne garantit ni les performances ni la disponibilité de toutes les métriques. Vérifiez toujours les données finales dans Meta Ads Manager.

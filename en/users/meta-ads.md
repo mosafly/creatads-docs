@@ -1,22 +1,22 @@
 ---
-title: Publish to Meta Ads
-description: Connect a Meta account to a Creatads workspace and publish paused creatives.
+title: Analyze your Meta performance
+description: Connect a Meta ad account to a Creatads workspace to read campaign and ad performance.
 ---
 
 ## Connect your workspace
 
-Open **Meta Ads** in Creatads and connect your Meta account. The connection belongs to the active workspace: it never grants access to another workspace's ad accounts.
+Open **Meta Analytics** in Creatads and connect your Meta account. The connection belongs to the active workspace: it never grants access to another workspace's ad accounts.
 
-After authorizing, choose the **ad account** and **Facebook Page** used for your ads. You can disconnect the workspace at any time; Creatads then removes the stored access token for that workspace.
+After authorizing, choose the **ad account** to analyze. A Facebook Page and Pixel are not required. You can disconnect the workspace at any time; Creatads then removes the stored access token for that workspace.
 
-## Prepare a publication
+## Read performance
 
-From a completed campaign, review selected creatives, copy, destination URL, CTA, targeting and budget. Creatads uses the account and Page shown in the connection section.
+Refresh performance to see the selected account's campaigns for the last seven days. Open a campaign to see its ads and their metrics: spend, impressions, clicks, CTR, CPM and reach.
 
-Publishing creates the campaign, ad sets and ads with **paused** status. No budget is spent until you activate them in Meta Ads Manager.
+When an ad corresponds to a known Creatads creative, it is marked as linked. Other ads remain visible as unlinked Meta ads.
 
 ## Access and limitations
 
-You need the required permissions on the ad account and Page. Meta may reject a publication or request additional verification. Creatads does not guarantee Meta approval or performance: always review settings and final status in Meta Ads Manager.
+This first version is strictly **read-only**: Creatads does not create or modify campaigns, ad sets, ads, budgets, audiences or delivery statuses. You need read access to the selected ad account.
 
-Metrics shown after publishing are read-only Meta data. They support monitoring; a performance audit per creative will be added later.
+Meta may request additional verification. Creatads does not guarantee performance or the availability of every metric. Always verify final data in Meta Ads Manager.
