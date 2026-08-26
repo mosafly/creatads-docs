@@ -58,7 +58,7 @@ Use an explicit expected-count loop when the complete batch matters. The SDK hel
 
 The REST API computes `combinations x max(1, floor(volume / combinations))`, where combinations are selected angles (or one empty angle) times ratios. For exact batch sizing, choose a volume at least as large as and divisible by `angles x ratios`; otherwise the returned `jobs` count can differ from the requested volume.
 
-This contract differs from the web application's Mode Pro matrix, which combines formats, modes, angles and effective volume. Presets in the application neutralize volume to one, and batches above 60 require confirmation rather than being rejected by a hard API limit.
+This legacy REST/CLI contract differs from the web application's Mode Pro matrix. HTTP MCP V2 exposes the real `ratios × modes/scenes × angles × repetitions` calculation, a cost preview, explicit confirmation and durable batch tracking. Presets neutralize repetitions and V2 batches are capped at 60 images.
 
 ## Application-only workflows
 
@@ -67,5 +67,5 @@ The following cannot currently be automated through the public REST API, SDK, CL
 - Inspiration rail and Explorer pool;
 - Ads Library manual search and competitor onboarding;
 - Clone and ad-structure analysis;
-- the five ad-format presets and other Mode Pro modes;
-- favorites and winners, which are still placeholders.
+- favorites and winners, which are still placeholders;
+- Meta publishing, which remains disabled during the Analytics phase.

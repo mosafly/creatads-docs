@@ -48,6 +48,6 @@ Utilisez une boucle fondée sur le nombre attendu lorsque le lot complet est imp
 
 L'API calcule `combinaisons x max(1, floor(volume / combinaisons))`, où les combinaisons correspondent aux angles sélectionnés (ou un angle vide) multipliés par les ratios. Pour un total exact, choisissez un volume au moins égal et divisible par `angles x ratios` ; sinon le champ `jobs` retourné peut différer du volume demandé.
 
-Ce contrat diffère de Mode Pro dans l'application, qui combine ratios, modes/scènes, angles et volume. Les presets neutralisent le volume à un et les lots supérieurs à 60 demandent une confirmation sans limite dure.
+Ce contrat REST/CLI historique diffère de Mode Pro dans l'application. Le MCP HTTP V2 expose le calcul réel `ratios × modes/scènes × angles × répétitions`, un preview de coût, une confirmation explicite et le suivi durable du batch. Les presets neutralisent les répétitions et les lots V2 sont limités à 60 images.
 
-Inspiration, Explorer, la recherche Ads Library, Clone, les cinq presets publicitaires, Favoris et Winners ne sont pas automatisables via les interfaces développeur actuelles.
+Inspiration, Explorer, la recherche Ads Library, Clone, Favoris et Winners ne sont pas encore automatisables via les interfaces développeur publiques. La publication Meta reste désactivée pendant la phase Analytics.
