@@ -1,5 +1,9 @@
 # Brand Kit
 
+## Product briefs for the agent
+
+The Brand Kit product-brief section manages versioned facts, sourced claims, forbidden claims, preservation constraints and roles for library photos. Save a draft until the facts are verified; confirm validation after checking. The MCP can reuse the brief id in a preview, which freezes the approved version. Reload a brief if a concurrent version conflict occurs.
+
 The Brand Kit stores one workspace's identity and business context: name, description, colors, fonts, light/dark logos, research summary, niche, market, Explorer category and detected competitors.
 
 ## Website analysis

@@ -1,66 +1,70 @@
-# MCP integration
+# MCP integration and Codex plugin
 
-Remote HTTP endpoint: `https://api.creatads.co/mcp`
+Endpoint: `https://api.creatads.co/mcp`. V3 ships with the `agentic_creative_workflow` migration and matching imgproc deployment. Always verify `get_generation_capabilities` and `tools/list` against the actual endpoint; local files alone do not prove deployment.
 
-> This is the V2 contract. It becomes available once the
-> `mcp_generation_batches` migration has been applied and the imgproc service
-> has been deployed. Always use `tools/list` as the source of truth for a live instance.
+## Codex installation
 
-## Connection
+The [public integrations repository](https://github.com/mosafly/creatads-integrations) contains the plugin and seven skills, without backend source or customer data. Add its directory as a Codex marketplace, then install `creatads@creatads-public`.
 
-Authenticate the client with a CreatAds API key in the Bearer header.
+The HTTP configuration references the environment variable **name** `CREATADS_MCP_TOKEN`. Set its value in your local secret environment, never in a manifest or conversation. Restart Codex if its process environment changed and start a new task after installation.
 
-```bash
-claude mcp add --transport http creatads https://api.creatads.co/mcp \
-  --header "Authorization: Bearer YOUR_CADS_KEY"
-```
+The stdio server in `services/mcp` forwards tool discovery and calls to the same HTTP endpoint. It reads this variable or the CreatAds CLI configuration. Both transports therefore use one catalog and contract.
 
-For Codex, configure the same HTTP endpoint with an environment variable that
-holds the key; never put the key in the repository.
+## Workflows
 
-## Recommended V2 workflow
+| Skill | Purpose |
+|---|---|
+| creatads-guide | Discover and choose relevant capabilities |
+| creatads-brand | Brand kit, product facts and references |
+| creatads-inspiration | Browse, search, favorites and templates |
+| creatads-create | Easy/Pro creative generation |
+| creatads-edit | Targeted edits and reformatting |
+| creatads-review | Fidelity separately from marketing analysis |
+| creatads-library | Retrieve and display existing images |
 
-```text
-1. get_generation_capabilities
-2. list_clients, get_brand_kit, list_angles and list_assets
-3. upload_image or ingest_external_image when needed
-4. preview_easy_generation or preview_pro_batch
-5. review total_images and estimated_credits
-6. call generate_* with confirm: true and a unique idempotency_key
-7. poll get_batch_status; use resume_batch or cancel_batch when needed
-```
+The agent inspects existing context before asking questions. Presets, angles, offers and CTAs are optional choices, not mandatory ingredients of every editorial visual.
 
-Previews never consume credits. A completed image consumes one credit, so an
-explicit confirmation is required before execution.
+## Generation contract
 
-## V2 tools
+All 27 presets and modes share their catalog with the app. Mode means operation, preset means scene, angle means message and aspect ratio means canvas shape.
 
-- Discovery: `get_generation_capabilities`, `list_creative_modes`,
-  `list_formats`, `list_presets`.
-- Context: existing `list_clients`, `create_client`, `get_brand_kit`,
-  `list_angles`, `get_angle`, `generate_angles`.
-- Assets: `upload_image`, `ingest_external_image`, `list_assets`,
-  `list_templates`.
-- Easy Mode: `preview_easy_generation`, `generate_easy_generation`.
-- Pro Mode: `preview_pro_batch`, `generate_pro_batch`, `get_batch_status`,
-  `resume_batch`, `cancel_batch`.
+Easy Mode supports 1–3 images and the ratios returned in `easy_mode_aspect_ratios`. Pro supports all five ratios and two mutually exclusive shapes:
 
-Easy Mode accepts one to three variants, or one slot per selected preset. Pro
-Mode computes the real Cartesian product
-`ratios × modes/scenes × angles × repetitions`, capped at 60 images. Selecting
-a preset neutralizes repetitions, matching the application.
+- `items`: exactly one image per item, for independently art-directed concepts;
+- a deliberate matrix of `modes × aspect_ratios × angle_ids × repetitions`. Presets replace scenes and neutralize repetitions.
 
-`cancel_batch` cancels slots that have not started. An image already running at
-the provider may still complete, but it will not restart the batch.
+Maximum 60 images per batch. Invalid combinations are rejected rather than silently normalized.
 
-## V1 compatibility
+`preview_easy_generation` and `preview_pro_batch` save the immutable plan: preview/session ids, exact image count, credit estimate, initial/correction budgets and per-image effective prompt, references, product version, mode, preset, ratio, angle and copy.
 
-The eleven legacy tools, including `create_campaign` and `generate_creatives`,
-remain temporarily available for existing integrations. They use the former
-campaign model and must not be used for new work: they do not cover Easy Mode,
-presets, cost preview, or durable V2 batches.
+A preview creates no image and charges no generation credit. Show it to the user, then call the matching `generate_*` with `confirm: true` and a stable `idempotency_key` after approval. Reuse existing ids after a timeout.
 
-## Current exclusions
+## Product facts and fidelity
 
-Ads Library exploration and Meta publishing are not exposed through V2. Meta
-publishing remains disabled in the product during the Analytics phase.
+`list_product_briefs`, `get_product_brief` and `upsert_product_brief` manage versioned client-scoped product facts: description, sourced approved claims, forbidden claims, preservation constraints and reference roles (product, packaging, installation, detail, logo, style, source).
+
+Set `validated: true` only after user validation. Updates require `expected_version`; conflicts must not overwrite newer data. A preview snapshots the approved version and effective prompt, so later brand/product changes cannot alter it.
+
+`edit` requires a source and `variation_prompt`. Preservation modes reject automatic copy, presets, angles and enabled brand kit inputs that the engine would ignore. Write exact text replacements in `variation_prompt`; use a creation mode for a new ad.
+
+Never invent reviews, ratings, offers or before/after outcomes. `multi-mini` is explicitly unavailable until multiple sourced reviews have an input contract.
+
+## Budgets and durable execution
+
+Each technically successful image costs one generation credit, **including visually rejected results**. Correction budget defaults to 0 and requires approval. Corrections use the original `session_id`, `correction: true` and a `parent_creative_id` from that session. Original versions remain available.
+
+Activation atomically reserves MCP batch credits. `get_quota_status` distinguishes used, reserved and available credits. Provider request ids and renewable worker leases support recovery. Uncertain provider acceptance is quarantined with its reservation intact, never blindly resubmitted.
+
+`get_batch_status` returns per-image results and may recover already-authorized work. `resume_batch` retries known failures within the approved budget. `cancel_batch` cancels pending work; submitted images may still finish and be charged.
+
+## Brand, Inspiration and images
+
+`extract_brand` returns suggestions without overwriting the kit; `update_brand_kit` patches approved fields only. Browse existing references with `list_inspiration`, search through the existing gated service with `search_inspiration`, inspect with `get_inspiration_ad`, and save only selected favorites/templates. Search quotas are separate from generation credits. No competitor watch is started.
+
+`get_creative(include_image: true)` returns native MCP image content, a resource link and structured data, with legacy JSON text compatibility. Rendering depends on the host: prefer native inline media, then an authorized preview or usable link.
+
+`validate_creative` checks product fidelity, dimensions and copy with `passed`, `failed` or `uncertain`. Missing evidence is never a pass. `analyze_creative` separately evaluates marketing potential; its score proves neither fidelity, actual sales nor Meta approval.
+
+## Compatibility and exclusions
+
+Legacy campaign tools remain for existing integrations, but new workflows must use preview/confirmation. Retrieval or review does not authorize paid regeneration. Meta publishing, ad spend, video, OAuth, Figma and automatic monitoring are outside this release.

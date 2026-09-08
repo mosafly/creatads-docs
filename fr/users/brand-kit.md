@@ -1,5 +1,9 @@
 # Brand Kit
 
+## Fiches produit pour l’agent
+
+La section « Fiches produit pour l’agent » du Brand Kit permet de créer et modifier des fiches versionnées : faits, allégations sourcées, interdictions, détails à préserver et rôles des photos de la bibliothèque. Enregistrez un brouillon tant que les faits ne sont pas vérifiés ; cochez la validation après vérification. Le MCP peut réutiliser l’identifiant de la fiche dans une preview et conserve la version validée utilisée. Un conflit de version exige de recharger la fiche.
+
 Le Brand Kit centralise le contexte et l’identité d’une marque pour un espace client.
 
 ## Données enregistrées
