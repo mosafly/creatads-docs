@@ -45,7 +45,7 @@ Une preview ne génère pas d'image et ne consomme pas de crédit. Après valida
 
 `validated: true` signifie que l'utilisateur a vérifié ces informations. Une modification exige `expected_version`; un conflit ne doit jamais écraser la version plus récente. La preview conserve un instantané : un changement ultérieur du Brand Kit ou de la fiche ne modifie pas son prompt.
 
-`edit` exige une source et `variation_prompt`. `edit` et `reformat` refusent les champs de copy automatique, presets, angles ou Brand Kit qui seraient ignorés. Pour changer le texte dans une image existante, écrire la substitution exacte dans `variation_prompt`. Pour une nouvelle publicité, choisir un mode de création.
+`edit` exige une source et une instruction dans `variation_prompt` ou `prompt_override`, jamais les deux. `edit` et `reformat` refusent les champs de copy automatique, presets, angles ou Brand Kit qui seraient ignorés. Pour changer le texte dans une image existante, écrire la substitution exacte dans `variation_prompt`. Pour une nouvelle publicité, choisir un mode de création.
 
 Avis, étoiles, promotions et transformations ne doivent pas être inventés. Le preset `multi-mini` est signalé indisponible tant que le contrat ne reçoit pas plusieurs avis sourcés.
 
@@ -54,6 +54,8 @@ Avis, étoiles, promotions et transformations ne doivent pas être inventés. Le
 Un crédit est consommé par image techniquement réussie, **même si le contrôle visuel la rejette**. Le budget de correction est 0 par défaut et doit être approuvé explicitement. Une correction emploie `session_id`, `correction: true` et le `parent_creative_id` issu de cette session. Les versions précédentes sont conservées.
 
 L'activation réserve les crédits atomiquement pour les lots MCP. `get_quota_status` distingue utilisés, réservés et disponibles. Les identifiants fournisseur et baux de travail sont persistés pour reprendre une exécution après redémarrage. Une acceptation fournisseur incertaine reste réservée et nécessite une réconciliation : aucune nouvelle soumission automatique.
+
+Cette garantie couvre les lots MCP. Les nouvelles demandes de l'application tiennent compte des réservations, mais une génération classique déjà en cours n'est pas un slot MCP : ce n'est pas un verrou global sur tous les points d'entrée concurrents.
 
 `get_batch_status` retourne les résultats par image et peut reprendre le travail déjà autorisé. `resume_batch` ne relance que les échecs identifiés dans le budget restant. `cancel_batch` annule le travail en attente ; les images déjà soumises peuvent finir et être facturées.
 

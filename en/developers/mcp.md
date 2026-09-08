@@ -45,7 +45,7 @@ A preview creates no image and charges no generation credit. Show it to the user
 
 Set `validated: true` only after user validation. Updates require `expected_version`; conflicts must not overwrite newer data. A preview snapshots the approved version and effective prompt, so later brand/product changes cannot alter it.
 
-`edit` requires a source and `variation_prompt`. Preservation modes reject automatic copy, presets, angles and enabled brand kit inputs that the engine would ignore. Write exact text replacements in `variation_prompt`; use a creation mode for a new ad.
+`edit` requires a source and an instruction in either `variation_prompt` or `prompt_override`, never both. Preservation modes reject automatic copy, presets, angles and enabled brand kit inputs that the engine would ignore. Write exact text replacements in `variation_prompt`; use a creation mode for a new ad.
 
 Never invent reviews, ratings, offers or before/after outcomes. `multi-mini` is explicitly unavailable until multiple sourced reviews have an input contract.
 
@@ -54,6 +54,8 @@ Never invent reviews, ratings, offers or before/after outcomes. `multi-mini` is 
 Each technically successful image costs one generation credit, **including visually rejected results**. Correction budget defaults to 0 and requires approval. Corrections use the original `session_id`, `correction: true` and a `parent_creative_id` from that session. Original versions remain available.
 
 Activation atomically reserves MCP batch credits. `get_quota_status` distinguishes used, reserved and available credits. Provider request ids and renewable worker leases support recovery. Uncertain provider acceptance is quarantined with its reservation intact, never blindly resubmitted.
+
+This guarantee covers MCP batches. New application requests account for reservations, but an already-running legacy/UI generation is not a durable MCP slot: this is not a global lock across every concurrent entry point.
 
 `get_batch_status` returns per-image results and may recover already-authorized work. `resume_batch` retries known failures within the approved budget. `cancel_batch` cancels pending work; submitted images may still finish and be charged.
 
