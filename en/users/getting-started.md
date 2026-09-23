@@ -2,7 +2,9 @@
 
 ## Create an account
 
-Go to [creatads.co](https://creatads.co) and select **Start for free**. Starter includes 3 generations and does not require a payment card.
+Go to [creatads.co](https://creatads.co). When the private beta is active, enter your email on the **waitlist**. The team can approve your address and send you the signup link. Create your account with that exact email; existing accounts can still sign in at `/login`.
+
+When public registration is open, select **Start for free**. Starter includes 3 generations and does not require a payment card.
 
 ## Complete onboarding
 

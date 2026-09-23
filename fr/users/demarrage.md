@@ -2,7 +2,9 @@
 
 ## 1. Créer un compte
 
-Rendez-vous sur [creatads.co](https://creatads.co) et cliquez sur **Commencer gratuitement**.
+Rendez-vous sur [creatads.co](https://creatads.co). Lorsque la bêta privée est activée, saisissez votre email dans la **liste d’attente**. L’équipe peut autoriser votre adresse et vous envoyer le lien d’inscription. Utilisez exactement l’adresse autorisée pour créer votre compte ; les comptes existants peuvent toujours se connecter via `/login`.
+
+Quand les inscriptions publiques sont ouvertes, cliquez sur **Commencer gratuitement**.
 
 Le plan Starter inclut 3 générations. Aucune carte bancaire n’est requise.
 
