@@ -32,6 +32,7 @@
         "fr/users/introduction",
         "fr/users/demarrage",
         "fr/users/studio-ia",
+        "fr/users/carousels",
         "fr/users/campagnes",
         "fr/users/organisation-diffusion",
         "fr/users/inspiration",
@@ -50,6 +51,7 @@
         "fr/developers/cli",
         "fr/developers/sdk",
         "fr/developers/mcp",
+        "fr/developers/carousels-agent-first",
         "fr/developers/workflows"
       ]
     },
@@ -59,6 +61,7 @@
         "en/users/introduction",
         "en/users/getting-started",
         "en/users/studio",
+        "en/users/carousels",
         "en/users/campaigns",
         "en/users/production-and-publishing",
         "en/users/inspiration",
@@ -77,6 +80,7 @@
         "en/developers/cli",
         "en/developers/sdk",
         "en/developers/mcp",
+        "en/developers/carousels-agent-first",
         "en/developers/workflows"
       ]
     }
