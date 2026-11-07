@@ -55,11 +55,30 @@ Remplacer l'UUID par celui de `list_clients`. Envoyer ce JSON à l'[endpoint API
 
 ## MCP distant
 
-Après livraison de la migration `studio_carousel_documents`, le compagnon Studio peut enregistrer ses documents V2 dans Mes créas via `list_studio_carousels`, `get_studio_carousel` et `save_studio_carousel`. Le client et l’identifiant de génération dédupliquent la création. Les éditions exigent la version actuelle dans `expected_version`. Le lien de Mes créas ouvre le compagnon local pour éditer et exporter le document V2.
+Après livraison de la migration `studio_carousel_documents`, le compagnon Studio peut enregistrer ses documents V2 dans Mes créas via `list_studio_carousels`, `get_studio_carousel` et `save_studio_carousel`. Le client et l’identifiant de génération dédupliquent la création. Les éditions exigent la version actuelle dans `expected_version`. Le lien de Mes créas ouvre `/studio?client=…&project=…` dans l'application authentifiée ; l'inférence, l'aperçu et l'export nécessitent le compagnon local.
 
 `get_studio_carousel` renvoie `{ document }`. Pour modifier un document de révision `r`, envoyer `expected_version: r + 1` et le document modifié avec `revision: r + 1`. Les métadonnées `generation` sont conservées. Le serveur attribue l’identifiant lors de la création et enregistre ensemble le document, sa projection de galerie et sa révision. Les anciens outils d’édition, de rendu et d’export renvoient `studio_editor_required` pour ces documents. Le compagnon exporte le PNG ou le ZIP de la révision ouverte. La miniature de galerie utilise encore la projection du contenu.
 
 Endpoint : `https://api.creatads.co/mcp`, transport HTTP, clé CreatAds dans `Authorization: Bearer …`. Le transport stdio transmet ce catalogue automatiquement. Découvrir les schémas avec `tools/list` ; ne pas inventer d'identifiant. Après un timeout de création, réutiliser la même clé. Après un timeout de génération, interroger le batch connu.
+
+### Conversations et agent Studio
+
+La migration `20261107180000_studio_conversations.sql` ajoute les conversations persistantes après celle des documents Studio. Déployer le backend puis le frontend correspondant avant d'utiliser ce parcours. La présence du code ne garantit pas sa disponibilité en production.
+
+| Outil | Paramètres | Résultat |
+|---|---|---|
+| `get_studio_identity` | `client_id` | `user_id`, `client_id` après contrôle d'accès |
+| `list_studio_conversations` | `client_id` | résumés dans `conversations`, sans messages |
+| `get_studio_conversation` | `client_id`, `conversation_id` | `conversation` complète |
+| `save_studio_conversation` | `client_id`, `document`, `expected_version` facultatif à la création | `conversation` sauvegardée |
+
+Le schéma strict est exposé par `tools/list`. Une création utilise `version: 0` sans `expected_version` ; une mise à jour depuis `v` utilise `expected_version: v` et `document.version: v + 1`. Un rejeu identique retrouve la version enregistrée ; une modification concurrente renvoie `version_conflict`. Maximum 100 demandes par conversation et 2 Mio par document. Ces outils stockent les données sans lancer d'inférence.
+
+Le navigateur appelle `POST /studio-agent` avec sa session Supabase (`Authorization: Bearer …`) et `{ action, ...arguments }`. Cette route accepte uniquement les sept actions d'identité, de conversation et de document Studio. Elle ne remplace pas l'authentification MCP par clé. Le compagnon vérifie côté serveur que cette session et sa clé MCP appartiennent au même utilisateur et client.
+
+Le compagnon expose `POST /__agent/turn`, `/cancel`, `/status`, `/preview`, `/export` et `/conversations` sur la boucle locale 8093. Les origines sont explicitement autorisées. Une demande contient `clientId`, `conversationId`, `requestId` UUID, `message`, `language`, `platform`, `kind`, `projectId`, `revision` et `slideId` (les trois derniers peuvent être `null`). Réutiliser la demande exacte pour reprendre une opération interrompue. La boucle Rerun/Codex choisit une action validée, observe son résultat puis continue, avec au maximum huit étapes et une création par demande. Les modifications sont sauvegardées automatiquement.
+
+Les intentions et résultats sont persistants ; un checkpoint privé évite de rejouer les effets déjà terminés. Arrêter une demande ne supprime pas ses modifications sauvegardées. L'export vérifie encore le client et utilise la révision enregistrée dans son résultat. Ce pilote personnel prévoit un seul processus compagnon par compte, sans exécution distribuée. Codex exige un compte ChatGPT ; aucune clé API de repli n'est utilisée. Les photos IA et calques de logo restent hors de ce lot. Voir le [guide du Studio agent](/fr/users/studio-agent).
 
 ### Claude API
 

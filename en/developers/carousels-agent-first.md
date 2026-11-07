@@ -55,11 +55,30 @@ Replace the example UUID using `list_clients`. Send the body to the [existing AP
 
 ## Remote MCP integrations
 
-After deploying the `studio_carousel_documents` migration, the Studio companion can save editable V2 documents in My creations using `list_studio_carousels`, `get_studio_carousel`, and `save_studio_carousel`. Client and generation request IDs deduplicate creation. Edits require the current `expected_version`. The My creations link opens the local companion for V2 editing and export.
+After deploying the `studio_carousel_documents` migration, the Studio companion can save editable V2 documents in My creations using `list_studio_carousels`, `get_studio_carousel`, and `save_studio_carousel`. Client and generation request IDs deduplicate creation. Edits require the current `expected_version`. My creations opens `/studio?client=…&project=…` in the authenticated application; inference, previews and exports still require the local companion.
 
 `get_studio_carousel` returns `{ document }`. To edit a document at revision `r`, send `expected_version: r + 1` and the updated document with `revision: r + 1`. Preserve its `generation` metadata. The server assigns the creation ID and saves the document, library projection, and revision atomically. Legacy editing, rendering, and export tools return `studio_editor_required` for these documents. The companion exports PNG or ZIP files for the open revision. Gallery thumbnails still use the content projection.
 
 Endpoint: `https://api.creatads.co/mcp`, HTTP transport, CreatAds key in `Authorization: Bearer …`. Stdio forwards this same catalog automatically. Discover schemas with `tools/list`. Retry a timed-out creation with its original key; poll the known batch after a generation timeout.
+
+### Studio conversations and agent
+
+The `20261107180000_studio_conversations.sql` migration adds persistent conversations after the Studio document migration. Deploy the matching backend and frontend before using this flow. Code availability does not establish production availability.
+
+| Tool | Parameters | Result |
+|---|---|---|
+| `get_studio_identity` | `client_id` | authorized `user_id`, `client_id` |
+| `list_studio_conversations` | `client_id` | summaries in `conversations`, without messages |
+| `get_studio_conversation` | `client_id`, `conversation_id` | full `conversation` |
+| `save_studio_conversation` | `client_id`, `document`, optional `expected_version` on creation | saved `conversation` |
+
+Discover the strict schema using `tools/list`. Create with `version: 0` and no `expected_version`; update version `v` with `expected_version: v` and `document.version: v + 1`. Identical retries retrieve the saved document; competing writes return `version_conflict`. Conversations are limited to 100 requests and 2 MiB. These tools persist data without running inference.
+
+The browser calls `POST /studio-agent` using its Supabase session (`Authorization: Bearer …`) and `{ action, ...arguments }`. This route only accepts the seven Studio identity, conversation and document actions. It does not replace key-based MCP authentication. The companion verifies on the server that the browser session and its MCP key belong to the same user and client.
+
+The companion exposes `POST /__agent/turn`, `/cancel`, `/status`, `/preview`, `/export` and `/conversations` on loopback port 8093, with an explicit origin allowlist. A request contains UUIDs `clientId`, `conversationId`, `requestId`, plus `message`, `language`, `platform`, `kind`, `projectId`, `revision`, `slideId` (the last three may be `null`). Reuse the exact request to resume interrupted work. Rerun/Codex selects a validated action, observes its result and continues, up to eight steps and one creation per request. Edits save automatically.
+
+Intents and results persist; private checkpoints avoid repeating completed effects. Stopping a request preserves saved changes. Exports check access again and use the revision in their saved receipt. This personal pilot requires a single companion process per account and is not a distributed runner. Codex requires a ChatGPT account with no API-key fallback. AI photos and logo layers are outside this milestone. See the [Studio agent guide](/en/users/studio-agent).
 
 ### Claude API
 
