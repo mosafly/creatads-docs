@@ -55,6 +55,10 @@ Remplacer l'UUID par celui de `list_clients`. Envoyer ce JSON à l'[endpoint API
 
 ## MCP distant
 
+Après livraison de la migration `studio_carousel_documents`, le compagnon Studio peut enregistrer ses documents V2 dans Mes créas via `list_studio_carousels`, `get_studio_carousel` et `save_studio_carousel`. Le client et l’identifiant de génération dédupliquent la création. Les éditions exigent la version actuelle dans `expected_version`. Le lien de Mes créas ouvre le compagnon local pour éditer et exporter le document V2.
+
+`get_studio_carousel` renvoie `{ document }`. Pour modifier un document de révision `r`, envoyer `expected_version: r + 1` et le document modifié avec `revision: r + 1`. Les métadonnées `generation` sont conservées. Le serveur attribue l’identifiant lors de la création et enregistre ensemble le document, sa projection de galerie et sa révision. Les anciens outils d’édition, de rendu et d’export renvoient `studio_editor_required` pour ces documents. Le compagnon exporte le PNG ou le ZIP de la révision ouverte. La miniature de galerie utilise encore la projection du contenu.
+
 Endpoint : `https://api.creatads.co/mcp`, transport HTTP, clé CreatAds dans `Authorization: Bearer …`. Le transport stdio transmet ce catalogue automatiquement. Découvrir les schémas avec `tools/list` ; ne pas inventer d'identifiant. Après un timeout de création, réutiliser la même clé. Après un timeout de génération, interroger le batch connu.
 
 ### Claude API

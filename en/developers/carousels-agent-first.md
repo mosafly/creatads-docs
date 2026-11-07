@@ -55,6 +55,10 @@ Replace the example UUID using `list_clients`. Send the body to the [existing AP
 
 ## Remote MCP integrations
 
+After deploying the `studio_carousel_documents` migration, the Studio companion can save editable V2 documents in My creations using `list_studio_carousels`, `get_studio_carousel`, and `save_studio_carousel`. Client and generation request IDs deduplicate creation. Edits require the current `expected_version`. The My creations link opens the local companion for V2 editing and export.
+
+`get_studio_carousel` returns `{ document }`. To edit a document at revision `r`, send `expected_version: r + 1` and the updated document with `revision: r + 1`. Preserve its `generation` metadata. The server assigns the creation ID and saves the document, library projection, and revision atomically. Legacy editing, rendering, and export tools return `studio_editor_required` for these documents. The companion exports PNG or ZIP files for the open revision. Gallery thumbnails still use the content projection.
+
 Endpoint: `https://api.creatads.co/mcp`, HTTP transport, CreatAds key in `Authorization: Bearer …`. Stdio forwards this same catalog automatically. Discover schemas with `tools/list`. Retry a timed-out creation with its original key; poll the known batch after a generation timeout.
 
 ### Claude API
