@@ -3,14 +3,16 @@
 Le **Studio** (`/studio`) réunit votre conversation, vos créations et l'aperçu du carrousel. Ce pilote personnel nécessite le compagnon local connecté à votre compte Codex et au même compte CreatAds. Son ouverture sur une instance dépend du déploiement des migrations, du backend et du frontend Studio.
 
 1. Choisissez votre marque dans le studio. Ce choix détermine le Brand Kit et les créations accessibles.
-2. Précisez le contenu et la plateforme souhaités dans votre demande. Les préférences Instagram/TikTok et Éditorial/Produit/Vidéo restent facultatives dans le menu **+ → Préférences de création** ; votre message reste prioritaire.
+2. Précisez le contenu et la plateforme souhaités dans votre demande. Le Brand Kit reste visible dans la zone de saisie ; le bouton flèche envoie votre message.
 3. Décrivez votre demande et utilisez la flèche d'envoi, ou Entrée. Maj + Entrée ajoute une ligne.
 4. L'agent crée le carrousel et le sauvegarde dans **Mes créas**. Les étapes terminées apparaissent dans le chat.
 5. Continuez dans la même conversation : « Raccourcis le titre de la slide 2 », « Passe le carrousel en style sombre » ou « Exporte-le en ZIP ».
 
 Le rendu est visible à droite. Sélectionnez une slide pour préciser le contexte d'une demande. L'export apparaît dans le chat avec un bouton de téléchargement ; il contient les PNG ordonnés, la légende et le document éditable de la révision exportée. Aucune publication sur un réseau social n'est effectuée.
 
-Le bouton **+** donne accès aux actions de l’agent, au Brand Kit sélectionné, à Mes créas et aux connexions. **Importer un brief** ajoute le contenu d’un fichier `.txt` ou `.md` au brouillon, sans envoyer le message. L’ensemble doit tenir dans la limite de 3 000 caractères ; les images et PDF ne sont pas encore pris en charge par cet import. Un fichier trop long laisse le brouillon intact.
+Le menu **+** reprend la maquette : import, médiathèque, lien d’annonce, **Skills**, **Connexions**, **Brand Kit** et recherche d’annonces. **Depuis la médiathèque** ouvre les créations du client actif. **Skills** prépare une demande de carrousel ou de storyboard sans l’envoyer. La recherche d’annonces reste désactivée tant qu’elle n’est pas raccordée au studio.
+
+**Importer une photo ou un fichier** ouvre les formats disponibles : actuellement, **Importer un brief** ajoute un fichier `.txt` ou `.md` au brouillon ; les photos et PDF ne sont pas encore pris en charge. `Ctrl+U` ouvre cette entrée lorsque le chat a le focus. **Coller le lien d’une annonce** ajoute une URL HTTP/HTTPS au brouillon, sans analyser automatiquement l’annonce. L’ensemble doit tenir dans la limite de 3 000 caractères ; un fichier trop long laisse le brouillon intact.
 
 Le studio distingue un compagnon arrêté, une session expirée et un service Studio indisponible. Ce dernier nécessite l’activation du backend ; se reconnecter ne résout pas une route serveur absente.
 

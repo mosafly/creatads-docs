@@ -3,14 +3,16 @@
 **Studio** (`/studio`) brings together your conversation, creatives and carousel preview. This personal pilot requires the local companion connected to your Codex account and the same CreatAds account. Availability on an instance depends on deploying the Studio migrations, backend and frontend.
 
 1. Select your brand in Studio. It determines the Brand Kit and accessible creatives.
-2. Describe the content and platform you want in your request. Instagram/TikTok and Editorial/Product/Video preferences remain optional under **+ → Creation preferences**; your message takes priority.
+2. Describe the content and platform you want in your request. The Brand Kit stays visible in the composer; the arrow button sends your message.
 3. Describe your request and use the send arrow or Enter. Shift + Enter adds a line.
 4. The agent creates the carousel and saves it to **My creatives**. Completed steps appear in chat.
 5. Continue in the same conversation: “Shorten the title on slide 2”, “Use a dark style” or “Export it as a ZIP”.
 
 The preview appears on the right. Select a slide to provide context for your request. Exports appear in chat with a download button and contain ordered PNGs, the caption and the editable document at the exported revision. Nothing is published to a social network.
 
-The **+** button opens agent actions, the selected Brand Kit, My creatives and connections. **Import a brief** adds a `.txt` or `.md` file to the editable draft without sending it. The entire message must fit within 3,000 characters; images and PDFs are not yet supported by this import. Oversized files leave the draft unchanged.
+The **+** menu follows the reference: upload, media library, ad link, **Skills**, **Connections**, **Brand Kit** and ad search. **From the media library** opens the active client’s creatives. **Skills** prepares a carousel or storyboard request without sending it. Ad search stays disabled until it is connected to the studio.
+
+**Upload a photo or file** shows the supported formats: currently, **Import a brief** adds a `.txt` or `.md` file to the draft; photos and PDFs are not yet supported. `Ctrl+U` opens this entry when chat has focus. **Paste an ad link** adds an HTTP/HTTPS URL to the draft without automatically analyzing the ad. The entire message must fit within 3,000 characters; oversized files leave the draft unchanged.
 
 Studio distinguishes a stopped companion, an expired session and an unavailable Studio service. The latter requires backend activation; signing in again does not fix a missing server route.
 
