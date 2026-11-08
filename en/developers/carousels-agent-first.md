@@ -187,3 +187,13 @@ const source = await client.getCarouselPattern(clientId, analysisId);
 ```
 
 The SDK also provides `setCarouselWatch`, `getSocialCarousel` and `getCarouselPatterns`. The same tool names work through the Claude, OpenAI and Grok MCP configurations above; update `allowed_tools` accordingly. GPT Actions schemas include all eight intelligence actions. Code availability does not confirm deployment or an end-to-end connection in each third-party product.
+
+### Higgsfield and video storyboards
+
+`studioTurnRequestSchema` also accepts `medium?: "carousel" | "video"` and `videoPlanId?: UUID | null` to select the storyboard to edit. That storyboard must belong to the authenticated client's conversation. Agent action `prepare_video` saves a validated storyboard in `step.result.video`. Update backend and companion together to accept the action; no new table is added. The agent has no paid-submission action.
+
+Local `POST /__agent/video-quote`, `video-start`, `video-status`, `video-resume`, `video-stop`, `video-media` and `video-export` require `clientId`, `conversationId`, `planId`. `video-start` additionally requires `quoteId`, `confirmedUsd`; `video-media` requires a `scene` index. `video-list` accepts only `clientId`. Browser/MCP identity and conversation ownership are revalidated. Provider status/cancel URLs are restricted to Higgsfield’s origin and the expected request ID. Media is not publicly served.
+
+A private quote binds client, conversation, storyboard hash, model, inputs, amount and expiry. Submission intent persists before contacting the provider. Recovery uses the same `Idempotency-Key`, never an automatic paid replacement. Each status request submits at most one additional shot. A changed price blocks remaining shots. Media downloads pin DNS, bound time/bytes and reject redirects. Files remain in private `data/video/<clientId>/` storage.
+
+Configure `HF_CREDENTIALS=id:secret` or `HF_API_KEY_ID` + `HF_API_KEY_SECRET` on the companion only. HTTP uses `Authorization: Key id:secret`, `POST /estimate/<model>` → `{usd}`, then POST to the model endpoint; the selected catalog model is `kling-video/v4.0-flash/text-to-video`. No model or subscription fallback occurs. Verify actual access with the target API account before release. FFmpeg runs without a shell or URL inputs, using the client’s private files.

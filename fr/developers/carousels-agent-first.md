@@ -190,3 +190,13 @@ const source = await client.getCarouselPattern(clientId, analysisId);
 ```
 
 Les SDK proposent aussi `setCarouselWatch`, `getSocialCarousel` et `getCarouselPatterns`. Les mêmes noms d’outils fonctionnent via les configurations MCP Claude, OpenAI et Grok décrites ci-dessus ; adapter la liste `allowed_tools`. Le schéma GPT Actions inclut les huit actions d’intelligence. La présence des outils dans le code n’atteste pas leur déploiement ni la connexion de chaque produit tiers.
+
+### Higgsfield et storyboard vidéo
+
+`studioTurnRequestSchema` accepte aussi `medium?: "carousel" | "video"` et `videoPlanId?: UUID | null` pour désigner le storyboard à modifier. Ce dernier doit appartenir à la conversation du client authentifié. L’action d’agent `prepare_video` sauvegarde un storyboard validé dans `step.result.video`. Le backend et le compagnon doivent être mis à jour ensemble pour accepter cette action ; aucune nouvelle table n’est ajoutée. L’agent n’a pas d’action de lancement payant.
+
+Les routes locales `POST /__agent/video-quote`, `video-start`, `video-status`, `video-resume`, `video-stop`, `video-media` et `video-export` exigent `clientId`, `conversationId`, `planId`. `video-start` exige en plus `quoteId`, `confirmedUsd` ; `video-media` exige l’index `scene`. `video-list` accepte uniquement `clientId`. L’identité navigateur/MCP et la propriété de la conversation sont revalidées. Les URL de statut et d’annulation proviennent de Higgsfield et sont limitées à son origine et au request_id attendu. Les fichiers ne sont pas servis publiquement.
+
+Un devis privé lie le client, la conversation, le hash du storyboard, le modèle, les paramètres, le tarif et une expiration. Le premier POST persiste l’intention avant l’appel fournisseur. Les reprises réutilisent le même `Idempotency-Key` ; aucun remplacement payant automatique. Un seul nouveau plan est soumis par requête de suivi. Un changement de tarif bloque les plans restants. Les médias sont téléchargés via le client HTTP serveur avec DNS épinglé, limite de taille/durée et refus de redirection. Ils sont conservés sous le dossier privé `data/video/<clientId>/`.
+
+La configuration attend `HF_CREDENTIALS=id:secret` ou `HF_API_KEY_ID` + `HF_API_KEY_SECRET`, côté compagnon uniquement. Le contrat HTTP utilise `Authorization: Key id:secret`, `POST /estimate/<model>` → `{usd}`, puis POST sur le modèle ; le catalogue retenu est `kling-video/v4.0-flash/text-to-video`. Aucun repli vers un autre modèle ou abonnement. Vérifier l’accès effectif avec le compte API cible avant mise en service. Le montage utilise FFmpeg sans shell ni entrée URL, sur les fichiers du client.
