@@ -63,7 +63,9 @@ Endpoint : `https://api.creatads.co/mcp`, transport HTTP, clé CreatAds dans `Au
 
 ### Conversations et agent Studio
 
-La migration `20261107180000_studio_conversations.sql` ajoute les conversations persistantes après celle des documents Studio. Déployer le backend puis le frontend correspondant avant d'utiliser ce parcours. La présence du code ne garantit pas sa disponibilité en production.
+La migration `20261109130459_studio_conversations.sql` ajoute les conversations persistantes après `20261109130456_studio_carousel_documents.sql`. Sur une nouvelle instance, déployer les deux migrations, le backend puis le frontend correspondant avant d'utiliser ce parcours.
+
+Le backend CreatAds et ces deux migrations ont été déployés le 9 novembre 2026 ([exécution de livraison](https://github.com/mosafly/creatads/actions/runs/42623190948)). Les lectures MCP sur un compte réel et le refus des requêtes sans session valide sont vérifiés. Le frontend Studio reste disponible localement/en preview ; ce raccordement ne valide pas une génération complète depuis la session du navigateur.
 
 | Outil | Paramètres | Résultat |
 |---|---|---|
