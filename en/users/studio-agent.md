@@ -5,12 +5,12 @@
 1. Select your brand in Studio. It determines the Brand Kit and accessible creatives.
 2. Describe the content and platform you want in your request. The Brand Kit stays visible in the composer; the arrow button sends your message.
 3. Describe your request and use the send arrow or Enter. Shift + Enter adds a line.
-4. The agent creates the carousel and saves it to **My creatives**. Completed steps appear in chat.
+4. The agent creates the photo or carousel and saves it to **My creatives**. Completed steps appear in chat.
 5. Continue in the same conversation: “Shorten the title on slide 2”, “Use a dark style” or “Export it as a ZIP”.
 
 The preview appears on the right. Select a slide to provide context for your request. Exports appear in chat with a download button and contain ordered PNGs, the caption and the editable document at the exported revision. Nothing is published to a social network.
 
-The **+** menu follows the reference: upload, media library, ad link, **Skills**, **Connections**, **Brand Kit** and ad search. **From the media library** opens the active client’s creatives. **Skills** prepares a carousel or storyboard request without sending it. Ad search stays disabled until it is connected to the studio.
+The **+** menu follows the reference: upload, media library, ad link, **Skills**, **Connections**, **Brand Kit** and ad search. **From the media library** opens the active client’s creatives. **Skills** prepares a photo, carousel or storyboard request without sending it. Ad search stays disabled until it is connected to the studio.
 
 **Upload a photo or file** shows the supported formats: currently, **Import a brief** adds a `.txt` or `.md` file to the draft; photos and PDFs are not yet supported. `Ctrl+U` opens this entry when chat has focus. **Paste an ad link** adds an HTTP/HTTPS URL to the draft without automatically analyzing the ad. The entire message must fit within 3,000 characters; oversized files leave the draft unchanged.
 
@@ -18,7 +18,7 @@ Studio distinguishes a stopped companion, an expired session and an unavailable 
 
 ## Reopen and resume
 
-Conversations and carousels persist for the selected brand. Reopen a conversation from history after closing the page. **My creatives** also reopens a project in Studio. Switching brands changes the accessible conversations and creatives.
+Conversations, photos and carousels persist for the selected brand. Reopen a conversation from history after closing the page. **My creatives** also reopens a project in Studio. Switching brands changes the accessible conversations and creatives.
 
 A disconnected browser does not automatically cancel ongoing work. Use **Resume request** to recover saved steps. Stopping a request prevents further work but preserves changes already saved. If another session edited the project, reopen its current version before a new request.
 
@@ -26,7 +26,15 @@ A disconnected browser does not automatically cancel ongoing work. Use **Resume 
 
 Inference uses your personal Codex subscription quota. There is no paid API-key fallback or promised fixed currency price per carousel. Keep the companion running for generation, previews and exports; history remains readable through the service when it is stopped. The browser's CreatAds account must match the companion's account.
 
-This milestone creates text-led graphic carousels using Brand Kit colors and fonts. AI photos and logo layers are not included yet. This is a personal pilot, not a commercial ChatGPT connection for all SaaS users.
+Studio creates AI photos and graphic carousels, with or without photos, using the Brand Kit. Logo layers are not included. This is a personal pilot, not a commercial ChatGPT connection for all SaaS users.
+
+## Photos with your Codex subscription
+
+For example: “Create a photo of a bright desk using my brand colors, in 4:5” or “Create a three-slide carousel with a photo on its cover”. To illustrate an existing slide, select it and describe the photo. Results appear on the right and in **My creatives**; **Download** exports the photo as PNG. Carousel ZIP exports embed photos in the slides.
+
+Photos use Codex’s native image tool through your ChatGPT subscription, then persist in private client storage. There is no paid Images API call. The underlying image model is not exposed by this integration, so it does not promise a specific GPT Image version. Generation consumes subscription quota; no fixed currency price is advertised. Supported ratios are 1:1, 4:5, 9:16 and 16:9, cropped to the requested format.
+
+Brand context supplies the name, description and colors. Reference-photo uploads and exact product or person identity are not supported yet. If saving fails after generation, **Resume request** reuses the completed image. If generation itself was interrupted without a recoverable result, it does not restart automatically: a new request in a new conversation is needed.
 
 ## New interface and Higgsfield video
 
