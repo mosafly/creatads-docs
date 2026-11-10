@@ -55,7 +55,32 @@ Remplacer l'UUID par celui de `list_clients`. Envoyer ce JSON à l'[endpoint API
 
 ## MCP distant
 
+Après livraison de la migration `studio_carousel_documents`, le compagnon Studio peut enregistrer ses documents V2 dans Mes créas via `list_studio_carousels`, `get_studio_carousel` et `save_studio_carousel`. Le client et l’identifiant de génération dédupliquent la création. Les éditions exigent la version actuelle dans `expected_version`. Le lien de Mes créas ouvre `/studio?client=…&project=…` dans l'application authentifiée ; l'inférence, l'aperçu et l'export nécessitent le compagnon local.
+
+`get_studio_carousel` renvoie `{ document }`. Pour modifier un document de révision `r`, envoyer `expected_version: r + 1` et le document modifié avec `revision: r + 1`. Les métadonnées `generation` sont conservées. Le serveur attribue l’identifiant lors de la création et enregistre ensemble le document, sa projection de galerie et sa révision. Les anciens outils d’édition, de rendu et d’export renvoient `studio_editor_required` pour ces documents. Le compagnon exporte le PNG ou le ZIP de la révision ouverte. La miniature de galerie utilise encore la projection du contenu.
+
 Endpoint : `https://api.creatads.co/mcp`, transport HTTP, clé CreatAds dans `Authorization: Bearer …`. Le transport stdio transmet ce catalogue automatiquement. Découvrir les schémas avec `tools/list` ; ne pas inventer d'identifiant. Après un timeout de création, réutiliser la même clé. Après un timeout de génération, interroger le batch connu.
+
+### Conversations et agent Studio
+
+La migration `20261109130459_studio_conversations.sql` ajoute les conversations persistantes après `20261109130456_studio_carousel_documents.sql`. Sur une nouvelle instance, déployer les deux migrations, le backend puis le frontend correspondant avant d'utiliser ce parcours.
+
+Le backend CreatAds et ces deux migrations ont été déployés le 9 novembre 2026 ([exécution de livraison](https://github.com/mosafly/creatads/actions/runs/42623190948)). Les lectures MCP sur un compte réel et le refus des requêtes sans session valide sont vérifiés. Le frontend Studio reste disponible localement/en preview ; ce raccordement ne valide pas une génération complète depuis la session du navigateur.
+
+| Outil | Paramètres | Résultat |
+|---|---|---|
+| `get_studio_identity` | `client_id` | `user_id`, `client_id` après contrôle d'accès |
+| `list_studio_conversations` | `client_id` | résumés dans `conversations`, sans messages |
+| `get_studio_conversation` | `client_id`, `conversation_id` | `conversation` complète |
+| `save_studio_conversation` | `client_id`, `document`, `expected_version` facultatif à la création | `conversation` sauvegardée |
+
+Le schéma strict est exposé par `tools/list`. Une création utilise `version: 0` sans `expected_version` ; une mise à jour depuis `v` utilise `expected_version: v` et `document.version: v + 1`. Un rejeu identique retrouve la version enregistrée ; une modification concurrente renvoie `version_conflict`. Maximum 100 demandes par conversation et 2 Mio par document. Ces outils stockent les données sans lancer d'inférence.
+
+Le navigateur appelle `POST /studio-agent` avec sa session Supabase (`Authorization: Bearer …`) et `{ action, ...arguments }`. Cette route accepte uniquement les sept actions d'identité, de conversation et de document Studio. Elle ne remplace pas l'authentification MCP par clé. Le compagnon vérifie côté serveur que cette session et sa clé MCP appartiennent au même utilisateur et client.
+
+Le compagnon expose `POST /__agent/turn`, `/cancel`, `/status`, `/preview`, `/export` et `/conversations` sur la boucle locale 8093. Les origines sont explicitement autorisées. Une demande contient `clientId`, `conversationId`, `requestId` UUID, `message`, `language`, `platform`, `kind`, `projectId`, `revision` et `slideId` (les trois derniers peuvent être `null`). Réutiliser la demande exacte pour reprendre une opération interrompue. La boucle Rerun/Codex choisit une action validée, observe son résultat puis continue, avec au maximum huit étapes et une création par demande. Les modifications sont sauvegardées automatiquement.
+
+Les intentions et résultats sont persistants ; un checkpoint privé évite de rejouer les effets déjà terminés. Arrêter une demande ne supprime pas ses modifications sauvegardées. L'export vérifie encore le client et utilise la révision enregistrée dans son résultat. Ce pilote personnel prévoit un seul processus compagnon par compte, sans exécution distribuée. Codex exige un compte ChatGPT ; aucune clé API de repli n'est utilisée. Les photos IA et calques de logo restent hors de ce lot. Voir le [guide du Studio agent](/fr/users/studio-agent).
 
 ### Claude API
 
@@ -167,3 +192,22 @@ const source = await client.getCarouselPattern(clientId, analysisId);
 ```
 
 Les SDK proposent aussi `setCarouselWatch`, `getSocialCarousel` et `getCarouselPatterns`. Les mêmes noms d’outils fonctionnent via les configurations MCP Claude, OpenAI et Grok décrites ci-dessus ; adapter la liste `allowed_tools`. Le schéma GPT Actions inclut les huit actions d’intelligence. La présence des outils dans le code n’atteste pas leur déploiement ni la connexion de chaque produit tiers.
+
+### Higgsfield et storyboard vidéo
+
+`studioTurnRequestSchema` accepte aussi `medium?: "photo" | "carousel" | "video"` et `videoPlanId?: UUID | null` pour désigner le storyboard à modifier. Ce dernier doit appartenir à la conversation du client authentifié. L’action d’agent `prepare_video` sauvegarde un storyboard validé dans `step.result.video`. Le backend et le compagnon doivent être mis à jour ensemble pour accepter cette action ; aucune nouvelle table n’est ajoutée. L’agent n’a pas d’action de lancement payant.
+
+Les routes locales `POST /__agent/video-quote`, `video-start`, `video-status`, `video-resume`, `video-stop`, `video-media` et `video-export` exigent `clientId`, `conversationId`, `planId`. `video-start` exige en plus `quoteId`, `confirmedUsd` ; `video-media` exige l’index `scene`. `video-list` accepte uniquement `clientId`. L’identité navigateur/MCP et la propriété de la conversation sont revalidées. Les URL de statut et d’annulation proviennent de Higgsfield et sont limitées à son origine et au request_id attendu. Les fichiers ne sont pas servis publiquement.
+
+Un devis privé lie le client, la conversation, le hash du storyboard, le modèle, les paramètres, le tarif et une expiration. Le premier POST persiste l’intention avant l’appel fournisseur. Les reprises réutilisent le même `Idempotency-Key` ; aucun remplacement payant automatique. Un seul nouveau plan est soumis par requête de suivi. Un changement de tarif bloque les plans restants. Les médias sont téléchargés via le client HTTP serveur avec DNS épinglé, limite de taille/durée et refus de redirection. Ils sont conservés sous le dossier privé `data/video/<clientId>/`.
+
+La configuration attend `HF_CREDENTIALS=id:secret` ou `HF_API_KEY_ID` + `HF_API_KEY_SECRET`, côté compagnon uniquement. Le contrat HTTP utilise `Authorization: Key id:secret`, `POST /estimate/<model>` → `{usd}`, puis POST sur le modèle ; le catalogue retenu est `kling-video/v4.0-flash/text-to-video`. Aucun repli vers un autre modèle ou abonnement. Vérifier l’accès effectif avec le compte API cible avant mise en service. Le montage utilise FFmpeg sans shell ni entrée URL, sur les fichiers du client.
+
+
+### Photos natives du Studio
+
+`generate_photo` utilise le compagnon Codex personnel et son abonnement, sans API Images. Arguments : `title`, `brief`, `ratio` et les champs nullable `projectId`, `slideId`, `expectedRevision` (tous trois requis ensemble pour une slide). `list_photos` renvoie les métadonnées du client ; `set_image` est une commande de modification validée. Le serveur fixe le client et les identifiants de génération. Seuls les événements natifs `imageGeneration` terminés fournissent l’image ; un chemin rédigé par le modèle ou un message texte ne vaut pas résultat. Les options `image_generation`, `code_mode` et `code_mode_host` sont activées uniquement pour le tour image ; MCP, shell, navigateur, plugins et lecture de fichiers restent désactivés. Le modèle image exact n’est pas annoncé.
+
+Le MCP et `POST /studio-agent` authentifié exposent trois actions de stockage : `list_studio_images {client_id}`, `get_studio_image {client_id,image_id}`, `save_studio_image {client_id,image,base64}`. La dernière sauvegarde un PNG déjà généré, sans inférence. Le schéma des métadonnées est `shared/studio-image.ts` ; limite PNG de 20 Mio. Le stockage est privé, les URL signées expirent après 15 minutes, et les opérations vérifient utilisateur et client. La conversation d’origine doit appartenir au même client. Réutiliser un identifiant avec des métadonnées ou octets différents renvoie `idempotency_key_conflict`.
+
+La migration `20261110184227_studio_images` ajoute les métadonnées lisibles par leur propriétaire, les écritures réservées au service et le bucket privé `studio-images`. Une source de carrousel `{kind:"studio",imageId}` est acceptée après contrôle serveur de propriété. Les octets natifs terminés sont conservés sous le compte/client avant envoi cloud. Une interruption sans résultat récupérable renvoie `IMAGE_GENERATION_UNCERTAIN` ; aucune reprise ne régénère silencieusement. Les vues photo et aperçus de slides revérifient le client. L’import de références et la retouche de photos restent hors de ce premier raccord.
